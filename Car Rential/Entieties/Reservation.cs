@@ -15,7 +15,9 @@
         public virtual Custormer Custormer { get; set; }
 
         public int PickupLocationId { get; set; }
+        public virtual Office PickupLocation { get; set; }
 
-        public int retunLocationId { get; set; }
+        public int RetunLocationId { get; set; }
+        public virtual Office ReturnLocation { get; set; }
     }
 }

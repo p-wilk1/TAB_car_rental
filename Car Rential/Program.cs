@@ -1,9 +1,16 @@
+using Car_Rential.Entieties;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<RentialDbContext>(configuration =>
+{
+    configuration.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
+});
 
 var app = builder.Build();
 

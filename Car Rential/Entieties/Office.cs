@@ -9,5 +9,7 @@
 
         public int OfficeAddressId { get; set; }
         public virtual OfficeAddress OfficeAddress { get; set; }
+
+        public virtual List<Car> Cars { get; set; }
     }
 }

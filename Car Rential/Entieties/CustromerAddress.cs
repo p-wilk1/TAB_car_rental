@@ -10,6 +10,7 @@
         public string ZipCode { get; set; }
         public string State { get; set; }
 
+        public int CustormerId { get; set; }
         public virtual Custormer Custormer { get; set; }
     }
 }
