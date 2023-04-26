@@ -12,7 +12,7 @@
         public virtual Discount Discount { get; set; }
 
         public int CustomerId { get; set; }
-        public virtual Custormer Custormer { get; set; }
+        public virtual Customer Custormer { get; set; }
 
         public int PickupLocationId { get; set; }
         public virtual Office PickupLocation { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Car_Rential.Entieties
 {
-    public class Custormer
+    public class Customer
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -12,5 +12,7 @@
 
         public int CustomerAddressId { get; set; }
         public virtual CustromerAddress CustromerAddress { get; set; }
+
+        public virtual List<Reservation> Reservations { get; set; }
     }
 }

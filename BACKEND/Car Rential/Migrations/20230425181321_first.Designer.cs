@@ -100,7 +100,7 @@ namespace Car_Rential.Migrations
                     b.ToTable("CarInfos");
                 });
 
-            modelBuilder.Entity("Car_Rential.Entieties.Custormer", b =>
+            modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -320,13 +320,13 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.CustromerAddress", b =>
                 {
-                    b.HasOne("Car_Rential.Entieties.Custormer", "Custormer")
+                    b.HasOne("Car_Rential.Entieties.Customer", "Customer")
                         .WithOne("CustromerAddress")
                         .HasForeignKey("Car_Rential.Entieties.CustromerAddress", "CustormerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Custormer");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>
@@ -342,7 +342,7 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.Reservation", b =>
                 {
-                    b.HasOne("Car_Rential.Entieties.Custormer", "Custormer")
+                    b.HasOne("Car_Rential.Entieties.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustormerId");
 
@@ -360,7 +360,7 @@ namespace Car_Rential.Migrations
                         .WithMany()
                         .HasForeignKey("ReturnLocationId");
 
-                    b.Navigation("Custormer");
+                    b.Navigation("Customer");
 
                     b.Navigation("Discount");
 
@@ -369,7 +369,7 @@ namespace Car_Rential.Migrations
                     b.Navigation("ReturnLocation");
                 });
 
-            modelBuilder.Entity("Car_Rential.Entieties.Custormer", b =>
+            modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>
                 {
                     b.Navigation("CustromerAddress");
                 });
