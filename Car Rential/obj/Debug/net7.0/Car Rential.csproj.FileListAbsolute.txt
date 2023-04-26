@@ -1,0 +1,83 @@
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\appsettings.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Car Rential.exe
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Car Rential.deps.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Car Rential.runtimeconfig.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Car Rential.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Car Rential.pdb
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Azure.Core.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\NLog.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\NLog.Extensions.Logging.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Memory.Data.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.csproj.AssemblyReference.cache
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.AssemblyInfoInputs.cache
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.AssemblyInfo.cs
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.csproj.CoreCompileInputs.cache
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets\msbuild.Car Rential.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets\msbuild.build.Car Rential.props
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Car Rential.props
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Car Rential.props
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\scopedcss\bundle\Car Rential.styles.css
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.csproj.CopyComplete
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\refint\Car Rential.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.pdb
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\Car Rential.genruntimeconfig.cache
+C:\Users\kil85\source\repos\Car Rential\Car Rential\obj\Debug\net7.0\ref\Car Rential.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Humanizer.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\kil85\source\repos\Car Rential\Car Rential\bin\Debug\net7.0\System.CodeDom.dll
