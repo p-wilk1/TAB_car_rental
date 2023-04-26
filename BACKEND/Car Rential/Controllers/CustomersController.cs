@@ -1,9 +1,11 @@
-﻿using Car_Rential.Services;
+﻿using Car_Rential.Model;
+using Car_Rential.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Car_Rential.Controllers
 {
     [Route("api")]
+    [ApiController]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomersService _customersService;
@@ -18,6 +20,14 @@ namespace Car_Rential.Controllers
         {
             var result = _customersService.GetCustomers();
             return Ok(result);
+        }
+
+        [HttpPost("register")]
+        public ActionResult RegisterUser([FromBody] RegisterCustomerDto customerDto)
+        {
+            var result = _customersService.RegisterCustomer(customerDto);
+
+            return Created($"/api/register/{result}", null);
         }
     }
 }

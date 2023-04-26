@@ -2,6 +2,7 @@
 using Car_Rential.Entieties;
 using Car_Rential.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Car_Rential.Helpers
 {
@@ -20,10 +21,13 @@ namespace Car_Rential.Helpers
         {
             if (_dbContext.Database.CanConnect())
             {
-                var users = GetCustomers();
+                if (!_dbContext.Custormers.Any())
+                {
+                    var users = GetCustomers();
 
-                _dbContext.AddRange(users);
-                _dbContext.SaveChanges();
+                    _dbContext.AddRange(users);
+                    _dbContext.SaveChanges();
+                }
             }
         }
 
