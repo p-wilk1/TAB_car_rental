@@ -1,3 +1,4 @@
+using Car_Rential;
 using Car_Rential.Entieties;
 using Car_Rential.Helpers;
 using Car_Rential.Middleware;
@@ -8,8 +9,10 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,33 @@ builder.Services.AddDbContext<RentialDbContext>(configuration =>
 {
     configuration.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
 });
+
+var authenticationSettings = new AuthenticationSettings();
+
+builder.Configuration.GetSection("JWTInfo").Bind(authenticationSettings);
+
+builder.Services.AddSingleton(authenticationSettings);
+
+builder.Services
+    .AddAuthentication(option =>
+    {
+        option.DefaultAuthenticateScheme = "Bearer";
+        option.DefaultScheme = "Bearer";
+        option.DefaultChallengeScheme = "Bearer";
+    })
+    .AddJwtBearer(cfg =>
+    {
+        cfg.RequireHttpsMetadata = false;
+        cfg.SaveToken = true;
+        cfg.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidIssuer = authenticationSettings.JwtIssuer,
+            ValidAudience = authenticationSettings.JwtIssuer,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)
+            ),
+        };
+    });
 
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
@@ -45,6 +75,8 @@ app.UseSwaggerUI(c =>
 });
 
 // Configure the HTTP request pipeline.
+
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

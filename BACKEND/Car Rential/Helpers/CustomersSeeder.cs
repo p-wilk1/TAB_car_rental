@@ -2,6 +2,7 @@
 using Car_Rential.Entieties;
 using Car_Rential.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Car_Rential.Helpers
@@ -19,6 +20,13 @@ namespace Car_Rential.Helpers
 
         public void Seeder()
         {
+            var newMigrations = _dbContext.Database.GetPendingMigrations();
+
+            if (newMigrations.Any())
+            {
+                _dbContext.Database.Migrate();
+            }
+
             if (_dbContext.Database.CanConnect())
             {
                 if (!_dbContext.Custormers.Any())
@@ -34,13 +42,25 @@ namespace Car_Rential.Helpers
         private List<Customer> GetCustomers()
         {
             var result = new List<Customer>();
+            var admin = new Customer
+            {
+                FirstName = "Admin",
+                LastName = "Admin",
+                PhoneNumber = "000000000",
+                Email = "admin",
+                Pesel = "00000000000",
+            };
+            var adminPassword = "admin";
+            admin.HassedPassword = _passwordHasher.HashPassword(admin, adminPassword);
+            result.Add(admin);
+
             var c1 = new Customer
             {
                 FirstName = "Adam",
                 LastName = "Malysz",
                 PhoneNumber = "1234567890",
                 Email = "aaa@bbb.pl",
-                Pesel = "00000000000",
+                Pesel = "11111111111",
             };
             var c1Password = "AdamMalysz123!";
             var c1HassedPassword = _passwordHasher.HashPassword(c1, c1Password);
@@ -53,7 +73,7 @@ namespace Car_Rential.Helpers
                 LastName = "Haaland",
                 PhoneNumber = "1234567890",
                 Email = "ccc@ddd.pl",
-                Pesel = "11111111111",
+                Pesel = "22222222222",
             };
             var c2Password = "ErlingHaaland123!";
             var c2HassedPassword = _passwordHasher.HashPassword(c2, c2Password);
@@ -66,7 +86,7 @@ namespace Car_Rential.Helpers
                 LastName = "Pudzianowski",
                 PhoneNumber = "1234567890",
                 Email = "eee@fff.pl",
-                Pesel = "22222222222",
+                Pesel = "33333333333",
             };
             var c3Password = "MariuszPudzianowski123!";
             var c3HassedPassword = _passwordHasher.HashPassword(c3, c3Password);

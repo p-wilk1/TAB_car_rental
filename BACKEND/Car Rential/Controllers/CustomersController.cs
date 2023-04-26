@@ -19,6 +19,7 @@ namespace Car_Rential.Controllers
         public ActionResult GetAll()
         {
             var result = _customersService.GetCustomers();
+
             return Ok(result);
         }
 
@@ -28,6 +29,13 @@ namespace Car_Rential.Controllers
             var result = _customersService.RegisterCustomer(customerDto);
 
             return Created($"/api/register/{result}", null);
+        }
+
+        [HttpPost("login")]
+        public ActionResult LoginUser([FromBody] LoginCustomerDto customerDto)
+        {
+            var result = _customersService.LoginCustomer(customerDto);
+            return Ok(result);
         }
     }
 }
