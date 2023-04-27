@@ -27,26 +27,28 @@ namespace Car_Rential.Helpers
                         )
                 );
 
+            CreateMap<CustomerAddress, CustomerAdressDto>();
+
             CreateMap<Customer, ReturnCustomerDto>()
                 .ForPath(
-                    c => c.customerAddress.Country,
+                    c => c.customerAdress.Country,
                     x => x.MapFrom(y => y.CustromerAddress.Country)
                 )
-                .ForPath(c => c.customerAddress.City, x => x.MapFrom(y => y.CustromerAddress.City))
+                .ForPath(c => c.customerAdress.City, x => x.MapFrom(y => y.CustromerAddress.City))
                 .ForPath(
-                    c => c.customerAddress.StreetName,
+                    c => c.customerAdress.StreetName,
                     x => x.MapFrom(y => y.CustromerAddress.StreetName)
                 )
                 .ForPath(
-                    c => c.customerAddress.BuildingNumber,
+                    c => c.customerAdress.BuildingNumber,
                     x => x.MapFrom(y => y.CustromerAddress.BuildingNumber)
                 )
                 .ForPath(
-                    c => c.customerAddress.ZipCode,
+                    c => c.customerAdress.ZipCode,
                     x => x.MapFrom(y => y.CustromerAddress.ZipCode)
                 )
                 .ForPath(
-                    c => c.customerAddress.State,
+                    c => c.customerAdress.State,
                     x => x.MapFrom(y => y.CustromerAddress.State)
                 );
         }
