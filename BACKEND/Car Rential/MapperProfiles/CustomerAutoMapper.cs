@@ -3,11 +3,11 @@ using Car_Rential.Entieties;
 using Car_Rential.Model;
 using Microsoft.AspNetCore.Routing.Constraints;
 
-namespace Car_Rential.Helpers
+namespace Car_Rential.MapperProfiles
 {
-    public class RentalAutoMapper : Profile
+    public class CustomerAutoMapper : Profile
     {
-        public RentalAutoMapper()
+        public CustomerAutoMapper()
         {
             CreateMap<InputCustomerDto, Customer>()
                 .ForMember(

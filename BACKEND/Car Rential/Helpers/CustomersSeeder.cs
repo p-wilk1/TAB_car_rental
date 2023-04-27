@@ -36,6 +36,13 @@ namespace Car_Rential.Helpers
                     _dbContext.AddRange(users);
                     _dbContext.SaveChanges();
                 }
+                if (!_dbContext.Cars.Any())
+                {
+                    var cars = GetCars();
+
+                    _dbContext.AddRange(cars);
+                    _dbContext.SaveChanges();
+                }
             }
         }
 
@@ -129,6 +136,55 @@ namespace Car_Rential.Helpers
             c3.HassedPassword = c3HassedPassword;
             result.Add(c3);
 
+            return result;
+        }
+
+        private List<Car> GetCars()
+        {
+            var result = new List<Car>();
+
+            var c1 = new Car
+            {
+                Type = CarTypes.Coupe,
+                Model = "Focus MK2",
+                Brand = "Ford",
+                RegistrationNumber = "SMY6HK1",
+                pricePerDay = 100,
+                CarInfo = new CarInfo
+                {
+                    SeatsNumber = 1,
+                    DoorsNumber = 1,
+                    GearboxType = "Manu",
+                    Color = "Blue",
+                    Description = "My Car",
+                    ProductionYear = 2005,
+                    Mileage = 185000,
+                    FuelType = "Gaseline"
+                }
+            };
+
+            result.Add(c1);
+
+            var c2 = new Car
+            {
+                Type = CarTypes.Coupe,
+                Model = "911",
+                Brand = "Porshe",
+                RegistrationNumber = "aaaa",
+                pricePerDay = 2000,
+                CarInfo = new CarInfo
+                {
+                    SeatsNumber = 1,
+                    DoorsNumber = 1,
+                    GearboxType = "Manu",
+                    Color = "Blue",
+                    Description = "My Car",
+                    ProductionYear = 2005,
+                    Mileage = 185000,
+                    FuelType = "Gaseline"
+                }
+            };
+            result.Add(c2);
             return result;
         }
     }

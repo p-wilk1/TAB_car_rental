@@ -58,8 +58,10 @@ builder.Services
 
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
+builder.Services.AddScoped<ICarsService, CarsService>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
+builder.Services.AddScoped<IValidator<RegisterCarDto>, RegisterCarValidator>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();
 builder.Services.AddScoped<UpdateCustomerValidator>();
