@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Car_Rential.Model.Validators
 {
-    public class RegisterCustomerValidator : AbstractValidator<CustomerInputDto>
+    public class RegisterCustomerValidator : AbstractValidator<InputCustomerDto>
     {
         public RegisterCustomerValidator(RentialDbContext dbContext)
         {
@@ -72,6 +72,21 @@ namespace Car_Rential.Model.Validators
                 );
 
             RuleFor(c => c.ConfirmPassword).Equal(p => p.Password);
+
+            RuleFor(a => a.Country).NotEmpty().MaximumLength(255);
+            RuleFor(a => a.City).NotEmpty().MaximumLength(255);
+            RuleFor(a => a.StreetName).NotEmpty().MaximumLength(255);
+            RuleFor(a => a.BuildingNumber)
+                .NotEmpty()
+                .Matches(@"^[0-9]+[a-zA-Z]?$")
+                .WithMessage("Building number can only contain digits and one optional letter");
+
+            RuleFor(a => a.ZipCode)
+                .NotEmpty()
+                .Matches(@"^(\d{5})$")
+                .WithMessage("ZipCode if format XXXXX where X is a digit");
+
+            RuleFor(a => a.State).NotEmpty().MaximumLength(255);
         }
     }
 }

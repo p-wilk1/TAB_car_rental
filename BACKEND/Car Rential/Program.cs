@@ -1,6 +1,7 @@
 using Car_Rential;
 using Car_Rential.Entieties;
 using Car_Rential.Helpers;
+using Car_Rential.Interfaces;
 using Car_Rential.Middleware;
 using Car_Rential.Model;
 using Car_Rential.Model.Validators;
@@ -57,8 +58,8 @@ builder.Services
 
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
-builder.Services.AddScoped<IValidator<CustomerInputDto>, RegisterCustomerValidator>();
-builder.Services.AddScoped<IValidator<CustomerInputDto>, UpdateCustomerValidator>();
+builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
+builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();
 builder.Services.AddScoped<UpdateCustomerValidator>();

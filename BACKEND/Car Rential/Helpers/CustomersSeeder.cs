@@ -49,6 +49,15 @@ namespace Car_Rential.Helpers
                 PhoneNumber = "000000000",
                 Email = "admin",
                 Pesel = "00000000000",
+                CustromerAddress = new CustomerAddress
+                {
+                    Country = "Poland",
+                    City = "Gliwice",
+                    StreetName = "Akademicka",
+                    BuildingNumber = "16",
+                    ZipCode = "44100",
+                    State = "Silesia"
+                }
             };
             var adminPassword = "admin";
             admin.HassedPassword = _passwordHasher.HashPassword(admin, adminPassword);
@@ -61,6 +70,15 @@ namespace Car_Rential.Helpers
                 PhoneNumber = "1234567890",
                 Email = "aaa@bbb.pl",
                 Pesel = "11111111111",
+                CustromerAddress = new CustomerAddress
+                {
+                    Country = "Poland",
+                    City = "Zakopane",
+                    StreetName = "Skocznia",
+                    BuildingNumber = "6",
+                    ZipCode = "42300",
+                    State = "Silesia"
+                }
             };
             var c1Password = "AdamMalysz123!";
             var c1HassedPassword = _passwordHasher.HashPassword(c1, c1Password);
@@ -74,6 +92,15 @@ namespace Car_Rential.Helpers
                 PhoneNumber = "1234567890",
                 Email = "ccc@ddd.pl",
                 Pesel = "22222222222",
+                CustromerAddress = new CustomerAddress
+                {
+                    Country = "England",
+                    City = "Manchester",
+                    StreetName = "Ashton New Rd",
+                    BuildingNumber = "10",
+                    ZipCode = "11111",
+                    State = "Manchester"
+                }
             };
             var c2Password = "ErlingHaaland123!";
             var c2HassedPassword = _passwordHasher.HashPassword(c2, c2Password);
@@ -87,6 +114,15 @@ namespace Car_Rential.Helpers
                 PhoneNumber = "1234567890",
                 Email = "eee@fff.pl",
                 Pesel = "33333333333",
+                CustromerAddress = new CustomerAddress
+                {
+                    Country = "Poland",
+                    City = "Biała Rawska",
+                    StreetName = "Pudzian Streed",
+                    BuildingNumber = "1",
+                    ZipCode = "11111",
+                    State = "Lodzkie"
+                }
             };
             var c3Password = "MariuszPudzianowski123!";
             var c3HassedPassword = _passwordHasher.HashPassword(c3, c3Password);

@@ -10,8 +10,8 @@
         public string Pesel { get; set; }
         public string HassedPassword { get; set; }
 
-        public int CustomerAddressId { get; set; }
-        public virtual CustromerAddress CustromerAddress { get; set; }
+        public int CustromerAddressId { get; set; }
+        public virtual CustomerAddress CustromerAddress { get; set; }
 
         public virtual List<Reservation> Reservations { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Car_Rential.Entieties;
 using Car_Rential.Exceptions;
+using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +12,6 @@ using System.Text;
 
 namespace Car_Rential.Services
 {
-    public interface ICustomersService
-    {
-        IEnumerable<Customer> GetCustomers();
-        int RegisterCustomer(CustomerInputDto customerDto);
-        string LoginCustomer(LoginCustomerDto customerDto);
-        void DeleteCustomer(int customerId);
-        void UpdateCustomer(CustomerInputDto customerDto, int customerId);
-    }
-
     public class CustomersService : ICustomersService
     {
         private readonly RentialDbContext _dbContext;
@@ -48,14 +40,16 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<ReturnCustomerDto> GetCustomers()
         {
             var customers = _dbContext.Custormers
                 .Include(c => c.CustromerAddress)
                 .Include(c => c.Reservations)
                 .ToList();
 
-            return customers;
+            var result = _mapper.Map<List<ReturnCustomerDto>>(customers);
+
+            return result;
         }
 
         public string LoginCustomer(LoginCustomerDto customerDto)
@@ -102,7 +96,7 @@ namespace Car_Rential.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public int RegisterCustomer(CustomerInputDto customerDto)
+        public int RegisterCustomer(InputCustomerDto customerDto)
         {
             var user = _mapper.Map<Customer>(customerDto);
 
@@ -116,7 +110,7 @@ namespace Car_Rential.Services
             return user.Id;
         }
 
-        public void UpdateCustomer(CustomerInputDto customerDto, int customerId)
+        public void UpdateCustomer(InputCustomerDto customerDto, int customerId)
         {
             var user = FindCustomer(customerId);
 
@@ -145,13 +139,39 @@ namespace Car_Rential.Services
                 var hassedPassword = _passwordHasher.HashPassword(user, customerDto.Password);
                 user.HassedPassword = hassedPassword;
             }
+            if (customerDto.Country != null)
+            {
+                user.CustromerAddress.Country = customerDto.Country;
+            }
+            if (customerDto.State != null)
+            {
+                user.CustromerAddress.State = customerDto.State;
+            }
+            if (customerDto.City != null)
+            {
+                user.CustromerAddress.City = customerDto.City;
+            }
+            if (customerDto.StreetName != null)
+            {
+                user.CustromerAddress.StreetName = customerDto.StreetName;
+            }
+            if (customerDto.BuildingNumber != null)
+            {
+                user.CustromerAddress.BuildingNumber = customerDto.BuildingNumber;
+            }
+            if (customerDto.ZipCode != null)
+            {
+                user.CustromerAddress.ZipCode = customerDto.ZipCode;
+            }
 
             _dbContext.SaveChanges();
         }
 
         private Customer FindCustomer(int customerId)
         {
-            var result = _dbContext.Custormers.FirstOrDefault(x => x.Id == customerId);
+            var result = _dbContext.Custormers
+                .Include(a => a.CustromerAddress)
+                .FirstOrDefault(x => x.Id == customerId);
 
             if (result == null)
             {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Car_Rential.Model.Validators
 {
-    public class UpdateCustomerValidator : AbstractValidator<CustomerInputDto>
+    public class UpdateCustomerValidator : AbstractValidator<InputCustomerDto>
     {
         public UpdateCustomerValidator(RentialDbContext dbContext)
         {
@@ -67,6 +67,19 @@ namespace Car_Rential.Model.Validators
                 );
 
             RuleFor(c => c.ConfirmPassword).Equal(p => p.Password);
+
+            RuleFor(a => a.Country).MaximumLength(255);
+            RuleFor(a => a.City).MaximumLength(255);
+            RuleFor(a => a.StreetName).MaximumLength(255);
+            RuleFor(a => a.BuildingNumber)
+                .Matches(@"^[0-9]+[a-zA-Z]?$")
+                .WithMessage("Building number can only contain digits and one optional letter");
+
+            RuleFor(a => a.ZipCode)
+                .Matches(@"^(\d{5})$")
+                .WithMessage("ZipCode if format XXXXX where X is a digit");
+
+            RuleFor(a => a.State).MaximumLength(255);
         }
     }
 }

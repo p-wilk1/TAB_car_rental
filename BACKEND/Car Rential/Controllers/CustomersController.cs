@@ -1,4 +1,5 @@
-﻿using Car_Rential.Model;
+﻿using Car_Rential.Interfaces;
+using Car_Rential.Model;
 using Car_Rential.Model.Validators;
 using Car_Rential.Services;
 using FluentValidation;
@@ -11,8 +12,8 @@ namespace Car_Rential.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomersService _customersService;
-        private readonly IValidator<CustomerInputDto> _RegisterValidator;
-        private readonly IValidator<CustomerInputDto> _UpdateValidator;
+        private readonly IValidator<InputCustomerDto> _RegisterValidator;
+        private readonly IValidator<InputCustomerDto> _UpdateValidator;
 
         public CustomersController(
             ICustomersService customersService,
@@ -34,7 +35,7 @@ namespace Car_Rential.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult RegisterCustomer([FromBody] CustomerInputDto customerDto)
+        public ActionResult RegisterCustomer([FromBody] InputCustomerDto customerDto)
         {
             _RegisterValidator.ValidateAndThrow(customerDto);
 
@@ -61,7 +62,7 @@ namespace Car_Rential.Controllers
 
         [HttpPatch("{customerId}")]
         public ActionResult UpdateCustomer(
-            [FromBody] CustomerInputDto customerDto,
+            [FromBody] InputCustomerDto customerDto,
             [FromRoute] int customerId
         )
         {

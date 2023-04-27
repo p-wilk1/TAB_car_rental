@@ -11,7 +11,7 @@ namespace Car_Rential.Entieties
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarInfo> CarInfos { get; set; }
         public DbSet<Customer> Custormers { get; set; }
-        public DbSet<CustromerAddress> CustromerAddresses { get; set; }
+        public DbSet<CustomerAddress> CustromerAddresses { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Office> Offices { get; set; }
         public DbSet<OfficeAddress> OfficeAddresses { get; set; }
@@ -20,7 +20,7 @@ namespace Car_Rential.Entieties
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().Property(c => c.FirstName).IsRequired();
-            modelBuilder.Entity<CustromerAddress>().Property(a => a.Country).IsRequired();
+            modelBuilder.Entity<CustomerAddress>().Property(a => a.Country).IsRequired();
         }
     }
 }
