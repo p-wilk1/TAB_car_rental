@@ -1,18 +1,28 @@
 ﻿using Car_Rential.Model;
+using Car_Rential.Model.Validators;
 using Car_Rential.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Car_Rential.Controllers
 {
-    [Route("api")]
+    [Route("api/customer")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomersService _customersService;
+        private readonly IValidator<CustomerInputDto> _RegisterValidator;
+        private readonly IValidator<CustomerInputDto> _UpdateValidator;
 
-        public CustomersController(ICustomersService customersService)
+        public CustomersController(
+            ICustomersService customersService,
+            RegisterCustomerValidator registerValidations,
+            UpdateCustomerValidator updateValidations
+        )
         {
             _customersService = customersService;
+            _RegisterValidator = registerValidations;
+            _UpdateValidator = updateValidations;
         }
 
         [HttpGet("all")]
@@ -24,18 +34,42 @@ namespace Car_Rential.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult RegisterUser([FromBody] RegisterCustomerDto customerDto)
+        public ActionResult RegisterCustomer([FromBody] CustomerInputDto customerDto)
         {
+            _RegisterValidator.ValidateAndThrow(customerDto);
+
             var result = _customersService.RegisterCustomer(customerDto);
 
             return Created($"/api/register/{result}", null);
         }
 
         [HttpPost("login")]
-        public ActionResult LoginUser([FromBody] LoginCustomerDto customerDto)
+        public ActionResult LoginCustomer([FromBody] LoginCustomerDto customerDto)
         {
             var result = _customersService.LoginCustomer(customerDto);
+
             return Ok(result);
+        }
+
+        [HttpDelete("{customerId}")]
+        public ActionResult DeleteCustomer([FromRoute] int customerId)
+        {
+            _customersService.DeleteCustomer(customerId);
+
+            return NoContent();
+        }
+
+        [HttpPatch("{customerId}")]
+        public ActionResult UpdateCustomer(
+            [FromBody] CustomerInputDto customerDto,
+            [FromRoute] int customerId
+        )
+        {
+            _UpdateValidator.ValidateAndThrow(customerDto);
+
+            _customersService.UpdateCustomer(customerDto, customerId);
+
+            return Ok();
         }
     }
 }

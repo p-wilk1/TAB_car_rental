@@ -14,8 +14,10 @@ namespace Car_Rential.Services
     public interface ICustomersService
     {
         IEnumerable<Customer> GetCustomers();
-        int RegisterCustomer(RegisterCustomerDto customerDto);
+        int RegisterCustomer(CustomerInputDto customerDto);
         string LoginCustomer(LoginCustomerDto customerDto);
+        void DeleteCustomer(int customerId);
+        void UpdateCustomer(CustomerInputDto customerDto, int customerId);
     }
 
     public class CustomersService : ICustomersService
@@ -38,6 +40,14 @@ namespace Car_Rential.Services
             _authenticationSettings = authenticationSettings;
         }
 
+        public void DeleteCustomer(int customerId)
+        {
+            var user = FindCustomer(customerId);
+
+            _dbContext.Remove(user);
+            _dbContext.SaveChanges();
+        }
+
         public IEnumerable<Customer> GetCustomers()
         {
             var customers = _dbContext.Custormers
@@ -54,7 +64,7 @@ namespace Car_Rential.Services
 
             if (user == null)
             {
-                throw new CustomerNotFoundException("Invalid username or password.");
+                throw new LoginFailException("Invalid username or password.");
             }
 
             var isPasswordCorrect = _passwordHasher.VerifyHashedPassword(
@@ -65,7 +75,7 @@ namespace Car_Rential.Services
 
             if (isPasswordCorrect == PasswordVerificationResult.Failed)
             {
-                throw new CustomerNotFoundException("Invalid username or password.");
+                throw new LoginFailException("Invalid username or password.");
             }
 
             var claims = new List<Claim>
@@ -92,7 +102,7 @@ namespace Car_Rential.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public int RegisterCustomer(RegisterCustomerDto customerDto)
+        public int RegisterCustomer(CustomerInputDto customerDto)
         {
             var user = _mapper.Map<Customer>(customerDto);
 
@@ -104,6 +114,50 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
 
             return user.Id;
+        }
+
+        public void UpdateCustomer(CustomerInputDto customerDto, int customerId)
+        {
+            var user = FindCustomer(customerId);
+
+            if (customerDto.FirstName != null)
+            {
+                user.FirstName = customerDto.FirstName;
+            }
+            if (customerDto.LastName != null)
+            {
+                user.LastName = customerDto.LastName;
+            }
+            if (customerDto.Email != null)
+            {
+                user.Email = customerDto.Email;
+            }
+            if (customerDto.PhoneNumber != null)
+            {
+                user.PhoneNumber = customerDto.PhoneNumber;
+            }
+            if (customerDto.Pesel != null)
+            {
+                user.Pesel = customerDto.Pesel;
+            }
+            if (customerDto.Password != null)
+            {
+                var hassedPassword = _passwordHasher.HashPassword(user, customerDto.Password);
+                user.HassedPassword = hassedPassword;
+            }
+
+            _dbContext.SaveChanges();
+        }
+
+        private Customer FindCustomer(int customerId)
+        {
+            var result = _dbContext.Custormers.FirstOrDefault(x => x.Id == customerId);
+
+            if (result == null)
+            {
+                throw new CustomerNotFoundException("Account doesn't exist");
+            }
+            return result;
         }
     }
 }

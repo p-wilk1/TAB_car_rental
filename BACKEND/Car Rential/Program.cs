@@ -19,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddFluentValidation();
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Host.UseNLog();
@@ -56,9 +57,11 @@ builder.Services
 
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
-builder.Services.AddScoped<IValidator<RegisterCustomerDto>, RegisterCustomerValidator>();
-builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<IValidator<CustomerInputDto>, RegisterCustomerValidator>();
+builder.Services.AddScoped<IValidator<CustomerInputDto>, UpdateCustomerValidator>();
 builder.Services.AddScoped<CustomersSeeder>();
+builder.Services.AddScoped<RegisterCustomerValidator>();
+builder.Services.AddScoped<UpdateCustomerValidator>();
 
 var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();

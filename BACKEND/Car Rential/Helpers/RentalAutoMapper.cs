@@ -8,7 +8,7 @@ namespace Car_Rential.Helpers
     {
         public RentalAutoMapper()
         {
-            CreateMap<RegisterCustomerDto, Customer>();
+            CreateMap<CustomerInputDto, Customer>();
         }
     }
 }

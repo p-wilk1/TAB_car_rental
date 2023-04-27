@@ -1,6 +1,6 @@
 ﻿namespace Car_Rential.Model
 {
-    public class RegisterCustomerDto
+    public class CustomerInputDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

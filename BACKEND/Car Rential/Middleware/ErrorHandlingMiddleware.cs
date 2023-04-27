@@ -1,4 +1,8 @@
-﻿namespace Car_Rential.Middleware
+﻿using Car_Rential.Exceptions;
+using Car_Rential.Model.Validators;
+using FluentValidation;
+
+namespace Car_Rential.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
@@ -14,6 +18,26 @@
             try
             {
                 await next.Invoke(context);
+            }
+            catch (LoginFailException ex)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                context.Response.StatusCode = 401;
+                string response = "";
+                foreach (var error in ex.Errors)
+                {
+                    response += error.ErrorMessage;
+                }
+                await context.Response.WriteAsync(response);
+            }
+            catch (CustomerNotFoundException ex)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(ex.Message);
             }
             catch (Exception ex)
             {

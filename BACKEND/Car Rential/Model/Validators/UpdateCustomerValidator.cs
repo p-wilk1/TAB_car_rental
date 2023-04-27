@@ -1,26 +1,24 @@
 ﻿using Car_Rential.Entieties;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Car_Rential.Model.Validators
 {
-    public class RegisterCustomerValidator : AbstractValidator<CustomerInputDto>
+    public class UpdateCustomerValidator : AbstractValidator<CustomerInputDto>
     {
-        public RegisterCustomerValidator(RentialDbContext dbContext)
+        public UpdateCustomerValidator(RentialDbContext dbContext)
         {
             RuleFor(c => c.FirstName)
-                .NotEmpty()
                 .Matches("^[a-zA-Z]+$")
                 .WithMessage("FirstName must not contain white spaces")
                 .MaximumLength(30);
 
             RuleFor(c => c.LastName)
-                .NotEmpty()
                 .Matches("^[a-zA-Z]+$")
                 .WithMessage("LastName must not contain white spaces")
                 .MaximumLength(30);
 
             RuleFor(c => c.PhoneNumber)
-                .NotEmpty()
                 .Matches(@"^[\s-]?\d{3}[\s-]?\d{3}[\s-]?\d{3}$")
                 .Custom(
                     (value, contex) =>
@@ -34,7 +32,6 @@ namespace Car_Rential.Model.Validators
                 );
 
             RuleFor(c => c.Email)
-                .NotEmpty()
                 .Matches(@"^[^\s]+$")
                 .WithMessage("Email must not contain white spaces")
                 .EmailAddress()
@@ -50,7 +47,6 @@ namespace Car_Rential.Model.Validators
                 );
 
             RuleFor(c => c.Pesel)
-                .NotEmpty()
                 .Matches(@"^(\d{11})$")
                 .WithMessage("Pesel must be 11 digits")
                 .Custom(
@@ -65,7 +61,6 @@ namespace Car_Rential.Model.Validators
                 );
 
             RuleFor(c => c.Password)
-                .NotEmpty()
                 .Matches(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
                 .WithMessage(
                     "Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character [@$!%*?&], and be at least 8 characters long."
