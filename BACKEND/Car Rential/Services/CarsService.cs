@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Car_Rential.Entieties;
+using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,26 @@ namespace Car_Rential.Services
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
             return car.Id;
+        }
+
+        public void DeleteCar(int carId)
+        {
+            var car = GetCarById(carId);
+
+            _dbContext.Remove(car);
+            _dbContext.SaveChanges();
+        }
+
+        private Car GetCarById(int carId)
+        {
+            var car = _dbContext.Cars.FirstOrDefault(c => c.Id == carId);
+
+            if (car == null)
+            {
+                throw new CarNotFoudException("Car doesn't exist");
+            }
+
+            return car;
         }
     }
 }

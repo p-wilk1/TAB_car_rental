@@ -7,5 +7,6 @@ namespace Car_Rential.Interfaces
     {
         public IEnumerable<ReturnCarDto> GetAllCars();
         public int AddCar(RegisterCarDto carDto);
+        public void DeleteCar(int carId);
     }
 }

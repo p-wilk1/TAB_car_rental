@@ -29,5 +29,13 @@ namespace Car_Rential.Controllers
             var result = _carsService.AddCar(carDto);
             return Created($"/api/car/{result}", null);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCar(int id)
+        {
+            _carsService.DeleteCar(id);
+
+            return NoContent();
+        }
     }
 }

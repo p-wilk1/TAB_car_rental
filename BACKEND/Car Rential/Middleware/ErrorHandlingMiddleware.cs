@@ -19,6 +19,11 @@ namespace Car_Rential.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (CarNotFoudException ex)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(ex.Message);
+            }
             catch (LoginFailException ex)
             {
                 context.Response.StatusCode = 404;
