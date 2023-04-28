@@ -12,7 +12,7 @@
         public int CarInfoId { get; set; }
         public virtual CarInfo CarInfo { get; set; }
 
-        public int OfficeId { get; set; }
+        public int? OfficeId { get; set; }
         public virtual Office Office { get; set; }
     }
 
