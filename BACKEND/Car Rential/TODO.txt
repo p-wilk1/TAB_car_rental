@@ -1,2 +1,4 @@
+Edycja nie dziala Object reference not set to an instance of an object. 
+Cos nie tak z CarInfo ma null reference nwm dlaczego
 Edycja samochodu 
 Powoli zaczac autoryzacje
