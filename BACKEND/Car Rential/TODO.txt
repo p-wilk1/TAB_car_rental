@@ -1,3 +1,2 @@
-Dodaæ zasade validacji do carDto ze pola musza byc unikatowe
 Edycja samochodu 
 Powoli zaczac autoryzacje
