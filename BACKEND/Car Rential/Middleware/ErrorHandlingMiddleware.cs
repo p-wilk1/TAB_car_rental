@@ -1,4 +1,5 @@
 ﻿using Car_Rential.Exceptions;
+using Car_Rential.Interfaces;
 using Car_Rential.Model.Validators;
 using FluentValidation;
 
@@ -19,16 +20,16 @@ namespace Car_Rential.Middleware
             {
                 await next.Invoke(context);
             }
-            catch (CarNotFoudException ex)
-            {
-                context.Response.StatusCode = 404;
-                await context.Response.WriteAsync(ex.Message);
-            }
-            catch (LoginFailException ex)
-            {
-                context.Response.StatusCode = 404;
-                await context.Response.WriteAsync(ex.Message);
-            }
+            //catch (CarNotFoudException ex)
+            //{
+            //    context.Response.StatusCode = 404;
+            //    await context.Response.WriteAsync(ex.Message);
+            //}
+            //catch (LoginFailException ex)
+            //{
+            //    context.Response.StatusCode = 404;
+            //    await context.Response.WriteAsync(ex.Message);
+            //}
             catch (ValidationException ex)
             {
                 context.Response.StatusCode = 401;
@@ -39,10 +40,15 @@ namespace Car_Rential.Middleware
                 }
                 await context.Response.WriteAsync(response);
             }
-            catch (CustomerNotFoundException ex)
+            //catch (CustomerNotFoundException ex)
+            //{
+            //    context.Response.StatusCode = 404;
+            //    await context.Response.WriteAsync(ex.Message);
+            //}
+            catch (BaseException ex)
             {
-                context.Response.StatusCode = 404;
-                await context.Response.WriteAsync(ex.Message);
+                context.Response.StatusCode = ex.statusCode;
+                await context.Response.WriteAsync($"Error: {ex.Message}");
             }
             catch (Exception ex)
             {

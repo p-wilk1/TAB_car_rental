@@ -3,6 +3,7 @@ using Car_Rential.Model;
 using Car_Rential.Model.Validators;
 using Car_Rential.Services;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Car_Rential.Controllers
@@ -27,6 +28,7 @@ namespace Car_Rential.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize("admin")]
         public ActionResult GetAll()
         {
             var result = _customersService.GetCustomers();
