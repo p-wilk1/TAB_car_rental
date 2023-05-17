@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,15 +57,23 @@ builder.Services
         };
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("admin", x => x.RequireClaim(ClaimTypes.NameIdentifier, "1"));
+});
+
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
-builder.Services.AddScoped<IValidator<RegisterCarDto>, RegisterCarValidator>();
+builder.Services.AddScoped<IValidator<InputCarDto>, RegisterCarValidator>();
+builder.Services.AddScoped<IValidator<InputCarDto>, UpdateCarValidator>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();
 builder.Services.AddScoped<UpdateCustomerValidator>();
+builder.Services.AddScoped<UpdateCarValidator>();
+builder.Services.AddScoped<RegisterCarValidator>();
 
 var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();

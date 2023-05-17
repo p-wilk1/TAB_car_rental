@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Car_Rential.Authentication;
 using Car_Rential.Entieties;
 using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;

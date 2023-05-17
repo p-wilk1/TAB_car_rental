@@ -1,4 +1,4 @@
-﻿namespace Car_Rential
+﻿namespace Car_Rential.Authentication
 {
     public class AuthenticationSettings
     {

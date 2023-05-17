@@ -12,7 +12,7 @@ namespace Car_Rential.MapperProfiles
             CreateMap<Car, ReturnCarDto>()
                 .ForMember(dest => dest.CarInfo, opt => opt.MapFrom(src => src.CarInfo));
 
-            CreateMap<RegisterCarDto, Car>()
+            CreateMap<InputCarDto, Car>()
                 .ForMember(
                     c => c.CarInfo,
                     i =>
@@ -20,13 +20,13 @@ namespace Car_Rential.MapperProfiles
                             x =>
                                 new CarInfo
                                 {
-                                    SeatsNumber = x.SeatsNumber,
-                                    DoorsNumber = x.DoorsNumber,
+                                    SeatsNumber = (int)x.SeatsNumber,
+                                    DoorsNumber = (int)x.DoorsNumber,
                                     GearboxType = x.GearboxType,
                                     Color = x.Color,
                                     Description = x.Description,
-                                    ProductionYear = x.ProductionYear,
-                                    Mileage = x.Mileage,
+                                    ProductionYear = (int)x.ProductionYear,
+                                    Mileage = (int)x.Mileage,
                                     FuelType = x.FuelType,
                                 }
                         )
