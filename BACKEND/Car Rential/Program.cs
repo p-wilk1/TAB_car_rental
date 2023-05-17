@@ -1,5 +1,6 @@
 using Car_Rential;
 using Car_Rential.Authentication;
+using Car_Rential.Authorization;
 using Car_Rential.Entieties;
 using Car_Rential.Helpers;
 using Car_Rential.Interfaces;
@@ -9,6 +10,7 @@ using Car_Rential.Model.Validators;
 using Car_Rential.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -66,15 +68,18 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
+builder.Services.AddScoped<ICustomerContextService, CustomerContextService>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, RegisterCarValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, UpdateCarValidator>();
+builder.Services.AddScoped<IAuthorizationHandler, OwnAccountActionHandler>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();
 builder.Services.AddScoped<UpdateCustomerValidator>();
 builder.Services.AddScoped<UpdateCarValidator>();
 builder.Services.AddScoped<RegisterCarValidator>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 app.UseMiddleware<ErrorHandlingMiddleware>();

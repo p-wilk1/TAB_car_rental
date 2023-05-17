@@ -7,13 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Authorization\**" />
-	  <Content Remove="Authorization\**" />
-	  <EmbeddedResource Remove="Authorization\**" />
-	  <None Remove="Authorization\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
