@@ -4,10 +4,13 @@ export default function Navbar() {
   return (
     <header>
       <nav className={NavbarCSS.navigationContainer}>
+        <a href="#">
+          <img
+            src="./src/assets/sogood-rentals-logo-transparent.png"
+            className={NavbarCSS.logo}
+          ></img>
+        </a>
         <ul className={NavbarCSS.navigationList}>
-          <li>
-            <a href="#">(Logo)</a>
-          </li>
           <li>
             <a href="#">Oferta</a>
           </li>
