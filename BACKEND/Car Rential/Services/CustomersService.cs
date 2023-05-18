@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Car_Rential.Authentication;
+using Car_Rential.Authorization;
 using Car_Rential.Entieties;
 using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,19 +20,25 @@ namespace Car_Rential.Services
         private readonly RentialDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<Customer> _passwordHasher;
+        private readonly IAuthorizationService _authorizationHandler;
+        private readonly ICustomerContextService _customerContextService;
         private readonly AuthenticationSettings _authenticationSettings;
 
         public CustomersService(
             RentialDbContext context,
             IMapper mapper,
             IPasswordHasher<Customer> passwordHasher,
-            AuthenticationSettings authenticationSettings
+            AuthenticationSettings authenticationSettings,
+            IAuthorizationService authorizationHandler,
+            ICustomerContextService customerContextService
         )
         {
             _dbContext = context;
             _mapper = mapper;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
+            _authorizationHandler = authorizationHandler;
+            _customerContextService = customerContextService;
         }
 
         public void DeleteCustomer(int customerId)
@@ -113,6 +122,21 @@ namespace Car_Rential.Services
         public void UpdateCustomer(InputCustomerDto customerDto, int customerId)
         {
             var user = FindCustomer(customerId);
+
+            var whoIsAsking = (int)(_customerContextService.GetUserId ?? 0);
+
+            var authorizationResult = _authorizationHandler
+                .AuthorizeAsync(
+                    _customerContextService.GetCustomer,
+                    user,
+                    new OwnAccountActionRequirement(whoIsAsking)
+                )
+                .Result;
+
+            if (!authorizationResult.Succeeded)
+            {
+                throw new AuthorizationFailException("You don't have access to this account");
+            }
 
             if (customerDto.FirstName != null)
             {
