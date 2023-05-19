@@ -1,20 +1,19 @@
-.btnLogin {
-  text-transform: uppercase;
-  background: rgb(77, 77, 77);
-  border: solid 1px rgb(0, 255, 255);
-}
 
 .navigationContainer {
   top: 0;
   left: 0;
   position: fixed;
   display: flex;
+  padding-bottom: .2rem;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   background: rgb(77, 77, 77);
+  z-index: 999;
+  border-bottom: 1px solid rgb(0, 255, 255);
 }
 .navigationList {
+  display: flex;
   text-transform: uppercase;
   justify-content: center;
   align-items: center;
@@ -31,10 +30,10 @@
 }
 
 li {
-  display: block;
   float: left;
   margin-left: 1rem;
   margin-right: 1rem;
+
 }
 li a {
   letter-spacing: 1px;

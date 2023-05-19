@@ -1,0 +1,27 @@
+.headerCardContainer{
+    width: 80%;
+    padding: 0.5rem 1rem 1rem 1rem;
+    position: relative;
+    background-color: rgb(77, 77, 77);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+}
+
+h1,h2{
+    color: rgb(0, 255, 255);
+
+}
+h1{
+    margin: 1rem;
+    border-radius: 20px;
+    background-color:rgb(49, 49, 49);
+    padding: 1rem;
+    border-bottom: 1px solid rgb(0, 255, 255);
+    font-weight: 100;
+    font-size: 3rem;
+}
+h2{
+    margin: 1rem;
+    font-weight: 300;
+    padding: 1rem;
+}

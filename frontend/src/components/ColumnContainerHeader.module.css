@@ -1,0 +1,29 @@
+.columnContainer{
+    position: relative;
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+    margin: 0rem 3rem 2rem 3rem;
+}
+
+.column1of2{
+    width: 47%;
+    flex-basis: 47%;
+}
+.column1of2:first-child{
+    float: left;
+}
+.column1of2:last-child{
+    float: right;
+}
+
+.column1of3{
+    float: left;
+    width: 33.3%;
+    flex-basis: 33.3%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

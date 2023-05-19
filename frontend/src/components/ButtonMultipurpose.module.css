@@ -1,0 +1,27 @@
+.btn {
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: rgb(0, 255, 255);
+    padding: 1rem;
+    background: rgb(32, 32, 32);
+    border: solid 1px rgb(0, 255, 255);
+    border-radius: 20px;
+}
+
+.btn:active,
+.btn:hover {
+  color: white;
+  transition: all 0.2s;
+}
+.btn:active:after,
+.btn:hover:after {
+  transform: scaleX(1);
+}
+.btn:after {
+    display: block;
+    content: "";
+    transform: scaleX(0);
+    border-bottom: 1px solid rgb(0, 255, 255);
+    transition: all 0.2s ease-in-out;
+}

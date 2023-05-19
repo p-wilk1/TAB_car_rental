@@ -1,4 +1,5 @@
 import NavbarCSS from "./Navbar.module.css";
+import ButtonMultipurpose from "./ButtonMultipurpose";
 
 export default function Navbar() {
   return (
@@ -24,11 +25,9 @@ export default function Navbar() {
             <a href="#">Kontakt</a>
           </li>
           <li>
-            <button className={NavbarCSS.btnLogin}>
-              <a className={NavbarCSS.btnLink} href="#">
+            <ButtonMultipurpose url='#'>
                 Zaloguj się
-              </a>
-            </button>
+            </ButtonMultipurpose>
           </li>
         </ul>
       </nav>
