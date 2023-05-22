@@ -36,18 +36,18 @@ namespace Car_Rential.Helpers
                     _dbContext.AddRange(users);
                     _dbContext.SaveChanges();
                 }
-                if (!_dbContext.Cars.Any())
-                {
-                    var cars = GetCars();
-
-                    _dbContext.AddRange(cars);
-                    _dbContext.SaveChanges();
-                }
                 if (!_dbContext.Offices.Any())
                 {
                     var offices = GetOffices();
 
                     _dbContext.AddRange(offices);
+                    _dbContext.SaveChanges();
+                }
+                if (!_dbContext.Cars.Any())
+                {
+                    var cars = GetCars();
+
+                    _dbContext.AddRange(cars);
                     _dbContext.SaveChanges();
                 }
             }
@@ -167,7 +167,8 @@ namespace Car_Rential.Helpers
                     ProductionYear = 2005,
                     Mileage = 185000,
                     FuelType = "Gaseline"
-                }
+                },
+                OfficeId = 1,
             };
 
             result.Add(c1);
@@ -189,8 +190,10 @@ namespace Car_Rential.Helpers
                     ProductionYear = 2005,
                     Mileage = 185000,
                     FuelType = "Gaseline"
-                }
+                },
+                OfficeId = 2,
             };
+
             result.Add(c2);
             return result;
         }
