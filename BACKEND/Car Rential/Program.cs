@@ -68,6 +68,7 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 builder.Services.AddScoped<ICustomerContextService, CustomerContextService>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();

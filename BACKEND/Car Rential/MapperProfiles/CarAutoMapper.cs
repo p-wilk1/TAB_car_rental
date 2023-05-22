@@ -10,7 +10,8 @@ namespace Car_Rential.MapperProfiles
         {
             CreateMap<CarInfo, ReturnCarInfoDto>();
             CreateMap<Car, ReturnCarDto>()
-                .ForMember(dest => dest.CarInfo, opt => opt.MapFrom(src => src.CarInfo));
+                .ForMember(dest => dest.CarInfo, opt => opt.MapFrom(src => src.CarInfo))
+                .ForMember(dest => dest.Office, opt => opt.MapFrom(src => src.Office));
 
             CreateMap<InputCarDto, Car>()
                 .ForMember(
@@ -31,6 +32,8 @@ namespace Car_Rential.MapperProfiles
                                 }
                         )
                 );
+
+            CreateMap<Office, OfficeDto>();
         }
     }
 }

@@ -38,7 +38,6 @@ namespace Car_Rential.Model.Validators
                 .WithMessage(
                     "Invalid license plate number format. Please enter a valid license plate number in the format: ABC 1234 or AB 1234 or ABC1234 or ABC 1234."
                 )
-                .NotEmpty()
                 .Custom(
                     (value, context) =>
                     {
