@@ -43,6 +43,13 @@ namespace Car_Rential.Helpers
                     _dbContext.AddRange(cars);
                     _dbContext.SaveChanges();
                 }
+                if (!_dbContext.Offices.Any())
+                {
+                    var offices = GetOffices();
+
+                    _dbContext.AddRange(offices);
+                    _dbContext.SaveChanges();
+                }
             }
         }
 
@@ -185,6 +192,61 @@ namespace Car_Rential.Helpers
                 }
             };
             result.Add(c2);
+            return result;
+        }
+
+        private List<Office> GetOffices()
+        {
+            var result = new List<Office>();
+
+            var a = new Office
+            {
+                OfficeName = "A",
+                PhoneNumber = 123456789,
+                Email = "aaaa",
+                OfficeAddress = new OfficeAddress
+                {
+                    Country = "Poland",
+                    State = "Silesia",
+                    City = "aaa",
+                    StreetName = "aaaa",
+                    BuildingNumber = 1,
+                }
+            };
+
+            result.Add(a);
+            var b = new Office
+            {
+                OfficeName = "B",
+                PhoneNumber = 123456789,
+                Email = "bbbb",
+                OfficeAddress = new OfficeAddress
+                {
+                    Country = "Poland",
+                    State = "Silesia",
+                    City = "bbb",
+                    StreetName = "aabbaa",
+                    BuildingNumber = 2,
+                }
+            };
+            result.Add(b);
+
+            var c = new Office
+            {
+                OfficeName = "C",
+                PhoneNumber = 123456789,
+                Email = "cccc",
+                OfficeAddress = new OfficeAddress
+                {
+                    Country = "Poland",
+                    State = "Silesia",
+                    City = "ccc",
+                    StreetName = "cccc",
+                    BuildingNumber = 3,
+                }
+            };
+            result.Add(c);
+
             return result;
         }
     }

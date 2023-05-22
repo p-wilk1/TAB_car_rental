@@ -9,5 +9,6 @@ namespace Car_Rential.Interfaces
         public int AddCar(InputCarDto carDto);
         public void DeleteCar(int carId);
         public void UpdateCar(InputCarDto carDto, int carId);
+        public void RelocateCar(int carId, int officeId);
     }
 }

@@ -5,6 +5,7 @@ using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Car_Rential.Services
 {
@@ -39,7 +40,7 @@ namespace Car_Rential.Services
 
         public void DeleteCar(int carId)
         {
-            var car = GetCarById(carId);
+            var car = GetCarById(carId, c => c.CarInfo);
 
             _dbContext.Remove(car);
             _dbContext.SaveChanges();
@@ -47,7 +48,7 @@ namespace Car_Rential.Services
 
         public void UpdateCar(InputCarDto carDto, int carId)
         {
-            var car = GetCarById(carId);
+            var car = GetCarById(carId, c => c.CarInfo);
 
             if (carDto.Type != null)
             {
@@ -105,16 +106,38 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        private Car GetCarById(int carId)
+        public void RelocateCar(int carId, int officeId)
         {
-            var car = _dbContext.Cars.Include(a => a.CarInfo).FirstOrDefault(c => c.Id == carId);
+            var car = GetCarById(carId, c => c.Office);
+
+            var office = _dbContext.Offices.FirstOrDefault(o => o.Id == officeId);
+            if (office == null)
+            {
+                throw new CarNotFoudException("test");
+            }
+
+            car.OfficeId = officeId;
+            car.Office = office;
+            _dbContext.SaveChanges();
+        }
+
+        private Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions)
+        {
+            var car = _dbContext.Cars.Where(c => c.Id == carId);
 
             if (car == null)
             {
                 throw new CarNotFoudException("Car doesn't exist");
             }
 
-            return car;
+            foreach (var expression in expressions)
+            {
+                car = car.Include(expression);
+            }
+
+            var result = car.FirstOrDefault();
+
+            return result;
         }
     }
 }

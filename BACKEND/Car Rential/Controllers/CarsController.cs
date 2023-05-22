@@ -61,5 +61,13 @@ namespace Car_Rential.Controllers
             _carsService.UpdateCar(carDto, carId);
             return Ok();
         }
+
+        [HttpPatch("relocation")]
+        public ActionResult RelocateCar([FromQuery] int carId, [FromQuery] int officeId)
+        {
+            _carsService.RelocateCar(carId, officeId);
+
+            return Ok();
+        }
     }
 }

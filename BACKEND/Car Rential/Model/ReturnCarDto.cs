@@ -12,6 +12,6 @@ namespace Car_Rential.Model
         public double pricePerDay { get; set; }
 
         public ReturnCarInfoDto CarInfo { get; set; }
-        public Office Office { get; set; }
+        public OfficeDto Office { get; set; }
     }
 }
