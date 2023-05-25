@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderCardCSS from './HeaderCard.module.css'
-import ButtonMultipurpose from './ButtonMultipurpose'
+import ButtonMultipurpose from './shared/ButtonMultipurpose'
 
 function HeaderCard() {
   return (

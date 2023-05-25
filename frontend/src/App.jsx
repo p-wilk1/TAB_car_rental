@@ -1,17 +1,19 @@
 import Navbar from "./components/Navbar";
-import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
 import ColumnContainerHeader from "./components/ColumnContainerHeader";
+import SectionAbout from "./components/sectionAbout/SectionAbout";
+import HeaderCard from "./components/HeaderCard";
+import Carousel from "./components/sectionHeader/Carousel";
 
 function App() {
   return (
     <>
-      <section style={{   backgroundSize:'cover', backgroundPosition:'center',backgroundAttachment:'fixed'}}>
       <Navbar />
-      <ColumnContainerHeader/>
-      {/* <Carousel /> */}
-      
-      </section>
+        <ColumnContainerHeader/>
+      <SectionAbout>
+      </SectionAbout>
+
+
       <Footer/>
     </>
     );
