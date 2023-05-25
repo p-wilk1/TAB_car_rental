@@ -2,8 +2,8 @@ import Navbar from "./components/sectionHeader/Navbar";
 import Footer from "./components/sectionFooter/Footer";
 import ColumnContainerHeader from "./components/sectionHeader/ColumnContainerHeader";
 import SectionAbout from "./components/sectionAbout/SectionAbout";
-import HeaderCard from "./components/sectionHeader/HeaderCard";
-import Carousel from "./components/sectionHeader/Carousel";
+import AboutHeader from "./components/sectionAbout/AboutHeader";
+import ColumnContainerAbout from "./components/sectionAbout/ColumnContainerAbout";
 
 function App() {
   return (
@@ -11,6 +11,8 @@ function App() {
       <Navbar />
         <ColumnContainerHeader/>
       <SectionAbout>
+          <AboutHeader/>
+          <ColumnContainerAbout/>
       </SectionAbout>
 
 

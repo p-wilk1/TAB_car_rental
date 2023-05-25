@@ -1,0 +1,32 @@
+.columnContainer{
+    position: relative;
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+    margin: 0rem 3rem 2rem 3rem;
+}
+
+.column1of2{
+    width: 50%;
+    flex-basis: 50%;
+}
+.column1of2:first-child{
+    float: left;
+}
+.column1of2:last-child{
+    float: right;
+}
+
+.column1of3{
+    color: #f1efeb;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    float: left;
+    width: 30%;
+    flex-basis: 30%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

@@ -7,11 +7,11 @@
   border-radius: 20px;
 }
 
-h1,h2{
+.headerCardContainer h1,h2{
     color: #f1efeb;
 
 }
-h1{
+.headerCardContainer h1{
     margin: 1rem;
     border-radius: 20px;
     background-color:#10264a;
@@ -20,7 +20,7 @@ h1{
     font-weight: 100;
     font-size: 3rem;
 }
-h2{
+.headerCardContainer h2{
     margin: 1rem;
     font-weight: 300;
     padding: 1rem;
