@@ -8,9 +8,9 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background: rgb(77, 77, 77);
+  background: #10264a;
   z-index: 999;
-  border-bottom: 1px solid rgb(0, 255, 255);
+  border-bottom: 1px solid #a1a8c1;
 }
 .navigationList {
   display: flex;
@@ -38,7 +38,7 @@ li {
 li a {
   letter-spacing: 1px;
   font-size: 1.2rem;
-  color: rgb(0, 255, 255);
+  color: #f1efeb;
   padding: 10px;
   text-decoration: none;
   display: block;
@@ -60,6 +60,6 @@ li a:after {
   display: block;
   content: "";
   transform: scaleX(0);
-  border-bottom: 1px solid rgb(0, 255, 255);
+  border-bottom: 1px solid #C3E0E5;
   transition: all 0.2s ease-in-out;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import ColumnContainerCSS from './ColumnContainerHeader.module.css'
 import HeaderCard from './HeaderCard'
+import Carousel from './Carousel'
 
 function ColumnContainerHeader({children}) {
     
@@ -11,7 +12,8 @@ function ColumnContainerHeader({children}) {
                 <HeaderCard></HeaderCard>
             </div>
             <div className={ColumnContainerCSS.column1of2}>
-                <p>{placeholderMarkup}</p>
+                <Carousel></Carousel>
+                {/* <p>{placeholderMarkup}</p> */}
             </div>
         </div>
     </div>

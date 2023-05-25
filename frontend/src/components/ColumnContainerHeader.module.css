@@ -6,8 +6,8 @@
 }
 
 .column1of2{
-    width: 47%;
-    flex-basis: 47%;
+    width: 50%;
+    flex-basis: 50%;
 }
 .column1of2:first-child{
     float: left;

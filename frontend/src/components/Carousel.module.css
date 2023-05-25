@@ -4,7 +4,7 @@
   padding: 0.8rem;
 }
 .carouselItem img {
-  width: 20rem;
+  width: 25rem;
   height: 100%;
   object-fit: cover;
 }
@@ -16,7 +16,7 @@
 .carousel {
   padding: 1rem;
   overflow: hidden;
-  margin: 10rem 5rem 5rem 5rem;
-  background: rgb(77, 77, 77);
+  background: #5E729E;
+
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 }

@@ -6,11 +6,11 @@ import ColumnContainerHeader from "./components/ColumnContainerHeader";
 function App() {
   return (
     <>
-      <section  style={{backgroundColor:'rgb(224, 224, 224)'}}>
+      <section style={{   backgroundSize:'cover', backgroundPosition:'center',backgroundAttachment:'fixed'}}>
       <Navbar />
       <ColumnContainerHeader/>
-      <Carousel />
-
+      {/* <Carousel /> */}
+      
       </section>
       <Footer/>
     </>

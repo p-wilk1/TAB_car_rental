@@ -6,10 +6,11 @@ export default function Navbar() {
     <header>
       <nav className={NavbarCSS.navigationContainer}>
         <a href="#">
-          <img
+          <ButtonMultipurpose>(LOGO)</ButtonMultipurpose>
+          {/* <img
             src="./src/assets/sogood-rentals-logo-transparent.png"
             className={NavbarCSS.logo}
-          ></img>
+          ></img> */}
         </a>
         <ul className={NavbarCSS.navigationList}>
           <li>
