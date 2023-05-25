@@ -1,5 +1,5 @@
 import NavbarCSS from "./Navbar.module.css";
-import ButtonMultipurpose from "./shared/ButtonMultipurpose";
+import ButtonMultipurpose from '../shared/ButtonMultipurpose'
 
 export default function Navbar() {
   return (
