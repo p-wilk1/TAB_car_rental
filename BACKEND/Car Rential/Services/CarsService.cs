@@ -33,6 +33,8 @@ namespace Car_Rential.Services
         {
             var car = _mapper.Map<Car>(carDto);
 
+
+
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
             return car.Id;
