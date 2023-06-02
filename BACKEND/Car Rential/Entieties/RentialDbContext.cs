@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Abstractions;
 
 namespace Car_Rential.Entieties
@@ -16,6 +17,7 @@ namespace Car_Rential.Entieties
         public DbSet<Office> Offices { get; set; }
         public DbSet<OfficeAddress> OfficeAddresses { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

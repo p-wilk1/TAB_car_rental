@@ -22,18 +22,20 @@ namespace Car_Rential.Services
 
         public IEnumerable<ReturnCarDto> GetAllCars()
         {
-            var cars = _dbContext.Cars.Include(c => c.CarInfo).Include(c => c.Office).ToList();
+            var cars = _dbContext.Cars
+                .Include(c => c.CarInfo)
+                .Include(c => c.Office)
+                .Include(i => i.Images)
+                .ToList();
 
             var result = _mapper.Map<List<ReturnCarDto>>(cars);
 
             return result;
         }
 
-        public int AddCar(InputCarDto carDto)
+        public int AddCar(InputCarDto carDto, IFormFile file)
         {
             var car = _mapper.Map<Car>(carDto);
-
-
 
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
@@ -123,14 +125,9 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        private Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions)
+        public Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions)
         {
             var car = _dbContext.Cars.Where(c => c.Id == carId);
-
-            if (car == null)
-            {
-                throw new CarNotFoudException("Car doesn't exist");
-            }
 
             foreach (var expression in expressions)
             {
@@ -138,6 +135,11 @@ namespace Car_Rential.Services
             }
 
             var result = car.FirstOrDefault();
+
+            if (result == null)
+            {
+                throw new CarNotFoudException("Car doesn't exist");
+            }
 
             return result;
         }

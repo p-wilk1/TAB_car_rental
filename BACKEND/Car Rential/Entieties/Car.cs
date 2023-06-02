@@ -8,7 +8,7 @@
         public string Brand { get; set; }
         public string RegistrationNumber { get; set; }
         public double pricePerDay { get; set; }
-        public byte[] ImageData { get; set; }
+        public List<Image> Images { get; set; } = new List<Image>();
 
         public int CarInfoId { get; set; }
         public virtual CarInfo CarInfo { get; set; }
