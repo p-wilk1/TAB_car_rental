@@ -6,7 +6,7 @@ namespace Car_Rential.Model.Validators
 {
     public class UpdateCustomerValidator : AbstractValidator<InputCustomerDto>
     {
-        public UpdateCustomerValidator(RentialDbContext dbContext)
+        public UpdateCustomerValidator(RentalDbContext dbContext)
         {
             RuleFor(c => c.FirstName)
                 .Matches("^[a-zA-Z]+$")

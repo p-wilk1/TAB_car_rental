@@ -5,7 +5,7 @@ namespace Car_Rential.Model.Validators
 {
     public class RegisterCustomerValidator : AbstractValidator<InputCustomerDto>
     {
-        public RegisterCustomerValidator(RentialDbContext dbContext)
+        public RegisterCustomerValidator(RentalDbContext dbContext)
         {
             RuleFor(c => c.FirstName)
                 .NotEmpty()

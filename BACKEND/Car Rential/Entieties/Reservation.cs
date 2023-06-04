@@ -5,8 +5,10 @@
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string ReservatonNumber { get; set; }
 
         public int CarId { get; set; }
+        public virtual Car Car { get; set; }
 
         public int? DiscountId { get; set; }
         public virtual Discount Discount { get; set; }

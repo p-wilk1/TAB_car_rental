@@ -4,9 +4,9 @@ using Microsoft.IdentityModel.Abstractions;
 
 namespace Car_Rential.Entieties
 {
-    public class RentialDbContext : DbContext
+    public class RentalDbContext : DbContext
     {
-        public RentialDbContext(DbContextOptions<RentialDbContext> contextOptions)
+        public RentalDbContext(DbContextOptions<RentalDbContext> contextOptions)
             : base(contextOptions) { }
 
         public DbSet<Car> Cars { get; set; }

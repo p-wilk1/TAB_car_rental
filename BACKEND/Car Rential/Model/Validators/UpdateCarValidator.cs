@@ -9,7 +9,7 @@ namespace Car_Rential.Model.Validators
         private readonly string errorMessage =
             "The input must contain only letters and cannot contain whitespace. Maximum length is 50 characters.";
 
-        public UpdateCarValidator(RentialDbContext _dbContext)
+        public UpdateCarValidator(RentalDbContext _dbContext)
         {
             RuleFor(c => c.Model).Matches(@"^[a-zA-Z]{1,50}$").WithMessage(errorMessage);
 

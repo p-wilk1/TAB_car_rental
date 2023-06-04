@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Car_Rential.Migrations
 {
-    [DbContext(typeof(RentialDbContext))]
+    [DbContext(typeof(RentalDbContext))]
     [Migration("20230601184548_photoAdded")]
     partial class photoAdded
     {

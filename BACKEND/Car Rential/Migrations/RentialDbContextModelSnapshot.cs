@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Car_Rential.Migrations
 {
-    [DbContext(typeof(RentialDbContext))]
+    [DbContext(typeof(RentalDbContext))]
     partial class RentialDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -288,6 +288,9 @@ namespace Car_Rential.Migrations
 
                     b.Property<int>("PickupLocationId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ReservatonNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RetunLocationId")
                         .HasColumnType("int");

@@ -28,7 +28,7 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Host.UseNLog();
-builder.Services.AddDbContext<RentialDbContext>(configuration =>
+builder.Services.AddDbContext<RentalDbContext>(configuration =>
 {
     configuration.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
 });
@@ -75,6 +75,7 @@ builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidat
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, RegisterCarValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, UpdateCarValidator>();
+builder.Services.AddScoped<IValidator<ReservationInput>, ReservationInputValidator>();
 builder.Services.AddScoped<IAuthorizationHandler, OwnAccountActionHandler>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();

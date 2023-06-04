@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car_Rential.Migrations
 {
     [DbContext(typeof(RentalDbContext))]
-    [Migration("20230427130135_customerAdressChange")]
-    partial class customerAdressChange
+    [Migration("20230604114554_ReservationNumber")]
+    partial class ReservationNumber
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace Car_Rential.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnType("int");
 
                     b.Property<string>("RegistrationNumber")
@@ -192,6 +192,27 @@ namespace Car_Rential.Migrations
                     b.ToTable("Discounts");
                 });
 
+            modelBuilder.Entity("Car_Rential.Entieties.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>
                 {
                     b.Property<int>("Id")
@@ -271,6 +292,9 @@ namespace Car_Rential.Migrations
                     b.Property<int>("PickupLocationId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ReservatonNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RetunLocationId")
                         .HasColumnType("int");
 
@@ -303,9 +327,7 @@ namespace Car_Rential.Migrations
 
                     b.HasOne("Car_Rential.Entieties.Office", "Office")
                         .WithMany("Cars")
-                        .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfficeId");
 
                     b.Navigation("CarInfo");
 
@@ -321,6 +343,17 @@ namespace Car_Rential.Migrations
                         .IsRequired();
 
                     b.Navigation("CustromerAddress");
+                });
+
+            modelBuilder.Entity("Car_Rential.Entieties.Image", b =>
+                {
+                    b.HasOne("Car_Rential.Entieties.Car", "Car")
+                        .WithMany("Images")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>
@@ -363,6 +396,11 @@ namespace Car_Rential.Migrations
                     b.Navigation("PickupLocation");
 
                     b.Navigation("ReturnLocation");
+                });
+
+            modelBuilder.Entity("Car_Rential.Entieties.Car", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>

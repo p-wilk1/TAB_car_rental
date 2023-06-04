@@ -17,7 +17,7 @@ namespace Car_Rential.Services
 {
     public class CustomersService : ICustomersService
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<Customer> _passwordHasher;
         private readonly IAuthorizationService _authorizationHandler;
@@ -25,7 +25,7 @@ namespace Car_Rential.Services
         private readonly AuthenticationSettings _authenticationSettings;
 
         public CustomersService(
-            RentialDbContext context,
+            RentalDbContext context,
             IMapper mapper,
             IPasswordHasher<Customer> passwordHasher,
             AuthenticationSettings authenticationSettings,

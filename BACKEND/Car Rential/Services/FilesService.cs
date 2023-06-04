@@ -10,11 +10,11 @@ namespace Car_Rential.Services
 {
     public class FilesService : IFilesService
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
         private readonly ICarsService _carsService;
         private readonly IMapper _mapper;
 
-        public FilesService(RentialDbContext dbContext, ICarsService carsService, IMapper mapper)
+        public FilesService(RentalDbContext dbContext, ICarsService carsService, IMapper mapper)
         {
             _dbContext = dbContext;
             _carsService = carsService;
