@@ -9,6 +9,6 @@
         public int? DiscountId { get; set; }
         public int CustomerId { get; set; }
         public int PickupLocationId { get; set; }
-        public int RetunLocationId { get; set; }
+        public int ReturnLocationId { get; set; }
     }
 }

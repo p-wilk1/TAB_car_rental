@@ -76,7 +76,7 @@ namespace Car_Rential.Model.Validators
                         }
                     }
                 );
-            RuleFor(c => c.RetunLocationId)
+            RuleFor(c => c.ReturnLocationId)
                 .NotEmpty()
                 .Custom(
                     (value, context) =>

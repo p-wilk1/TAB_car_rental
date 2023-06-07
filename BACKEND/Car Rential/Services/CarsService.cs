@@ -5,6 +5,7 @@ using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Linq.Expressions;
 
 namespace Car_Rential.Services
@@ -129,17 +130,17 @@ namespace Car_Rential.Services
         {
             var car = _dbContext.Cars.Where(c => c.Id == carId);
 
+            if (car.IsNullOrEmpty())
+            {
+                throw new CarNotFoudException("Car doesn't exist");
+            }
+
             foreach (var expression in expressions)
             {
                 car = car.Include(expression);
             }
 
             var result = car.FirstOrDefault();
-
-            if (result == null)
-            {
-                throw new CarNotFoudException("Car doesn't exist");
-            }
 
             return result;
         }

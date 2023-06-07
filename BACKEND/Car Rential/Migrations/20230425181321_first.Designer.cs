@@ -277,7 +277,7 @@ namespace Car_Rential.Migrations
                     b.Property<int>("PickupLocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RetunLocationId")
+                    b.Property<int>("ReturnLocationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReturnLocationId")

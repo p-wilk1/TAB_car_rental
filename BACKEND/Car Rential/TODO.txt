@@ -1,1 +1,1 @@
-Validacja ReservationInput
+Ostatnio grzeba³em przy add reservation

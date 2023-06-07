@@ -295,7 +295,7 @@ namespace Car_Rential.Migrations
                     b.Property<string>("ReservatonNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RetunLocationId")
+                    b.Property<int>("ReturnLocationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReturnLocationId")

@@ -23,6 +23,18 @@ namespace Car_Rential.Entieties
         {
             modelBuilder.Entity<Customer>().Property(c => c.FirstName).IsRequired();
             modelBuilder.Entity<CustomerAddress>().Property(a => a.Country).IsRequired();
+            modelBuilder
+                .Entity<Office>()
+                .HasMany(p => p.PickUpReservations)
+                .WithOne(r => r.PickupLocation)
+                .HasForeignKey(k => k.PickupLocationId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder
+                .Entity<Office>()
+                .HasMany(r => r.ReturnReservations)
+                .WithOne(r => r.ReturnLocation)
+                .HasForeignKey(k => k.ReturnLocationId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
