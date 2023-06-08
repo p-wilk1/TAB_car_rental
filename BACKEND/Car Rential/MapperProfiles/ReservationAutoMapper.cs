@@ -18,7 +18,8 @@ namespace Car_Rential.MapperProfiles
                 .ForMember(
                     dest => dest.ReturnLocation,
                     opt => opt.MapFrom(src => src.ReturnLocation)
-                );
+                )
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer));
         }
     }
 }

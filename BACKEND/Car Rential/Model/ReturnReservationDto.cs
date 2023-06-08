@@ -12,5 +12,6 @@ namespace Car_Rential.Model
         public Discount Discount { get; set; }
         public OfficeDto PickupLocation { get; set; }
         public OfficeDto ReturnLocation { get; set; }
+        public ReturnCustomerDto Customer { get; set; }
     }
 }

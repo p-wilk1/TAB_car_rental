@@ -17,7 +17,7 @@ namespace Car_Rential.Entieties
         public virtual Discount Discount { get; set; }
 
         public int CustomerId { get; set; }
-        public virtual Customer Custormer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         public int? PickupLocationId { get; set; }
         public virtual Office PickupLocation { get; set; }

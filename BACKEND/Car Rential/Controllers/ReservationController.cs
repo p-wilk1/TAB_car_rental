@@ -1,6 +1,7 @@
 ﻿using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.AspNetCore.Mvc;
+using Sieve.Models;
 
 namespace Car_Rential.Controllers
 {
@@ -30,9 +31,10 @@ namespace Car_Rential.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll([FromBody] SieveModel model)
         {
-            var result = _reservationService.GetAllReservations();
+            var result = _reservationService.GetAllReservations(model).Result;
+            ;
             return Ok(result);
         }
     }

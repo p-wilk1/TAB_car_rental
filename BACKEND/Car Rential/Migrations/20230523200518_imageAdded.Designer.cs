@@ -316,7 +316,7 @@ namespace Car_Rential.Migrations
             modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>
                 {
                     b.HasOne("Car_Rential.Entieties.CustomerAddress", "CustromerAddress")
-                        .WithOne("Custormer")
+                        .WithOne("Customer")
                         .HasForeignKey("Car_Rential.Entieties.Customer", "CustromerAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -337,7 +337,7 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.Reservation", b =>
                 {
-                    b.HasOne("Car_Rential.Entieties.Customer", "Custormer")
+                    b.HasOne("Car_Rential.Entieties.Customer", "Customer")
                         .WithMany("Reservations")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -357,7 +357,7 @@ namespace Car_Rential.Migrations
                         .WithMany()
                         .HasForeignKey("ReturnLocationId");
 
-                    b.Navigation("Custormer");
+                    b.Navigation("Customer");
 
                     b.Navigation("Discount");
 
@@ -373,7 +373,7 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.CustomerAddress", b =>
                 {
-                    b.Navigation("Custormer");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>

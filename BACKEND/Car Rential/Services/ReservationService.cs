@@ -3,8 +3,11 @@ using Car_Rential.Entieties;
 using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Sieve.Models;
+using Sieve.Services;
 using System.Linq.Expressions;
 
 namespace Car_Rential.Services
@@ -15,18 +18,21 @@ namespace Car_Rential.Services
         private readonly RentalDbContext _dbContext;
         private readonly ICustomersService _customersService;
         private readonly ICarsService _carsService;
+        private readonly ISieveProcessor _sieveProcessor;
 
         public ReservationService(
             IMapper mapper,
             RentalDbContext dbContext,
             ICustomersService customersService,
-            ICarsService carsService
+            ICarsService carsService,
+            ISieveProcessor sieveProcessor
         )
         {
             _mapper = mapper;
             _dbContext = dbContext;
             _customersService = customersService;
             _carsService = carsService;
+            _sieveProcessor = sieveProcessor;
         }
 
         public int AddReservation(ReservationInput reservationDto)
@@ -64,16 +70,32 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<ReturnReservationDto> GetAllReservations()
+        public async Task<PaginatedOutput<ReturnReservationDto>> GetAllReservations(
+            SieveModel model
+        )
         {
             var res = _dbContext.Reservations
                 .Include(r => r.Car)
-                .Include(r => r.Custormer)
+                .Include(r => r.Customer)
+                .Include(r => r.Customer.CustromerAddress)
                 .Include(r => r.PickupLocation)
                 .Include(r => r.ReturnLocation)
-                .ToList();
+                .AsQueryable();
 
-            var result = _mapper.Map<List<ReturnReservationDto>>(res);
+            var paginated = await _sieveProcessor.Apply(model, res).ToListAsync();
+
+            var mapped = _mapper.Map<List<ReturnReservationDto>>(paginated);
+
+            var totalItems = await _sieveProcessor
+                .Apply(model, res, applyPagination: false, applySorting: false)
+                .CountAsync();
+
+            var result = new PaginatedOutput<ReturnReservationDto>(
+                mapped,
+                totalItems,
+                model.Page.Value,
+                model.PageSize.Value
+            );
 
             return result;
         }
