@@ -1,0 +1,14 @@
+.titleContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.titleContainer h2 {
+	color: #10264a;
+	text-transform: uppercase;
+	font-weight: 100;
+	font-size: 3rem;
+	letter-spacing: 5px;
+	border-bottom: 1px solid #a1a8c1;
+}
