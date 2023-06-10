@@ -6,6 +6,9 @@ import CarList from './components/sectionCars/CarList';
 import { useState } from 'react';
 import SectionCars from './components/sectionCars/SectionCars';
 import Header from './components/shared/Header';
+import CarFilters from './components/sectionCars/CarFilters';
+import AboutHeader from './components/sectionAbout/AboutHeader';
+import ColumnContainerAbout from './components/sectionAbout/ColumnContainerAbout';
 
 const initialCars = [
 	{
@@ -92,8 +95,15 @@ function App() {
 		<>
 			<Navbar />
 			<ColumnContainerHeader />
-			<SectionAbout />
-			<SectionCars cars={cars} />
+			<SectionAbout>
+				<AboutHeader />
+				<ColumnContainerAbout />
+			</SectionAbout>
+			<SectionCars>
+				<Header>Nasze samochody</Header>
+				<CarFilters />
+				<CarList cars={cars} />
+			</SectionCars>
 
 			<Footer />
 		</>
