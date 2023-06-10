@@ -10,6 +10,7 @@ namespace Car_Rential.Model
         public string Brand { get; set; }
         public string RegistrationNumber { get; set; }
         public double pricePerDay { get; set; }
+        public List<ImageDto> ImagePath { get; set; }
 
         public ReturnCarInfoDto CarInfo { get; set; }
         public OfficeDto Office { get; set; }

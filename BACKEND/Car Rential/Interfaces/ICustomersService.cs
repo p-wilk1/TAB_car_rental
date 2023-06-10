@@ -1,5 +1,6 @@
 ﻿using Car_Rential.Entieties;
 using Car_Rential.Model;
+using System.Linq.Expressions;
 
 namespace Car_Rential.Interfaces
 {
@@ -10,5 +11,10 @@ namespace Car_Rential.Interfaces
         public string LoginCustomer(LoginCustomerDto customerDto);
         public void DeleteCustomer(int customerId);
         public void UpdateCustomer(InputCustomerDto customerDto, int customerId);
+
+        public Customer FindCustomer(
+            int customerId,
+            params Expression<Func<Customer, object>>[] expressions
+        );
     }
 }

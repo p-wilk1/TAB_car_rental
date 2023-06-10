@@ -5,16 +5,17 @@ using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Linq.Expressions;
 
 namespace Car_Rential.Services
 {
     public class CarsService : ICarsService
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public CarsService(RentialDbContext dbContext, IMapper mapper)
+        public CarsService(RentalDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
@@ -22,14 +23,18 @@ namespace Car_Rential.Services
 
         public IEnumerable<ReturnCarDto> GetAllCars()
         {
-            var cars = _dbContext.Cars.Include(c => c.CarInfo).Include(c => c.Office).ToList();
+            var cars = _dbContext.Cars
+                .Include(c => c.CarInfo)
+                .Include(c => c.Office)
+                .Include(i => i.Images)
+                .ToList();
 
             var result = _mapper.Map<List<ReturnCarDto>>(cars);
 
             return result;
         }
 
-        public int AddCar(InputCarDto carDto)
+        public int AddCar(InputCarDto carDto, IFormFile file)
         {
             var car = _mapper.Map<Car>(carDto);
 
@@ -121,11 +126,11 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        private Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions)
+        public Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions)
         {
             var car = _dbContext.Cars.Where(c => c.Id == carId);
 
-            if (car == null)
+            if (car.IsNullOrEmpty())
             {
                 throw new CarNotFoudException("Car doesn't exist");
             }

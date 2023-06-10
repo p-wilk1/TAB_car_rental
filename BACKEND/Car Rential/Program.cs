@@ -8,6 +8,7 @@ using Car_Rential.Middleware;
 using Car_Rential.Model;
 using Car_Rential.Model.Validators;
 using Car_Rential.Services;
+using Car_Rential.Sieve;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
+using Sieve.Services;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
@@ -28,7 +30,7 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Host.UseNLog();
-builder.Services.AddDbContext<RentialDbContext>(configuration =>
+builder.Services.AddDbContext<RentalDbContext>(configuration =>
 {
     configuration.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
 });
@@ -68,12 +70,16 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddScoped<ICustomersService, CustomersService>();
 builder.Services.AddScoped<ICarsService, CarsService>();
+builder.Services.AddScoped<IFilesService, FilesService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IDiscountService, DiscountService>();
 builder.Services.AddScoped<ICustomerContextService, CustomerContextService>();
+builder.Services.AddScoped<ISieveProcessor, AplicationSieveProcessor>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, RegisterCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCustomerDto>, UpdateCustomerValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, RegisterCarValidator>();
 builder.Services.AddScoped<IValidator<InputCarDto>, UpdateCarValidator>();
+builder.Services.AddScoped<IValidator<ReservationInput>, ReservationInputValidator>();
 builder.Services.AddScoped<IAuthorizationHandler, OwnAccountActionHandler>();
 builder.Services.AddScoped<CustomersSeeder>();
 builder.Services.AddScoped<RegisterCustomerValidator>();
