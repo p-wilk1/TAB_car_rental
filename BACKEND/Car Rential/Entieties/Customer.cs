@@ -9,6 +9,7 @@
         public string Email { get; set; }
         public string Pesel { get; set; }
         public string HassedPassword { get; set; }
+        public int ReservationCount { get; set; } = 0;
 
         public int CustromerAddressId { get; set; }
         public virtual CustomerAddress CustromerAddress { get; set; }

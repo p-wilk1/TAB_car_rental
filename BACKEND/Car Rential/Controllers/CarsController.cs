@@ -4,6 +4,7 @@ using Car_Rential.Model.Validators;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Car_Rential.Controllers
 {
@@ -37,11 +38,13 @@ namespace Car_Rential.Controllers
         }
 
         [HttpPost("add")]
-        public ActionResult AddCar([FromBody] InputCarDto carDto)
+        public ActionResult AddCar([FromForm] string stringCarDto, [FromForm] IFormFile file)
         {
+            var carDto = JsonConvert.DeserializeObject<InputCarDto>(stringCarDto);
+
             _registerCarValidator.ValidateAndThrow(carDto);
 
-            var result = _carsService.AddCar(carDto);
+            var result = _carsService.AddCar(carDto, file);
             return Created($"/api/car/{result}", null);
         }
 

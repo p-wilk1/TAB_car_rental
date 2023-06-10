@@ -9,10 +9,10 @@ namespace Car_Rential.Helpers
 {
     public class CustomersSeeder
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
         private readonly IPasswordHasher<Customer> _passwordHasher;
 
-        public CustomersSeeder(RentialDbContext context, IPasswordHasher<Customer> passwordHasher)
+        public CustomersSeeder(RentalDbContext context, IPasswordHasher<Customer> passwordHasher)
         {
             _dbContext = context;
             _passwordHasher = passwordHasher;

@@ -7,9 +7,9 @@ namespace Car_Rential.Services
 {
     public class DiscountService : IDiscountService
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
 
-        public DiscountService(RentialDbContext dbContext)
+        public DiscountService(RentalDbContext dbContext)
         {
             _dbContext = dbContext;
         }

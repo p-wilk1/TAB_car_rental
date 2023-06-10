@@ -1,3 +1,1 @@
-Dodalem authoryzacje do funkcji ktore moze wykonac tylko admin,
-Dodaæ autoryzacje gdzie moze byc wlasciciel konta lub admin
-Powoli zaczac autoryzacje
+Ostatnio grzeba³em przy add reservation

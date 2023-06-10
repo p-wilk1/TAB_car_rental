@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Car_Rential.Migrations
 {
-    [DbContext(typeof(RentialDbContext))]
+    [DbContext(typeof(RentalDbContext))]
     [Migration("20230425181321_first")]
     partial class first
     {
@@ -277,7 +277,7 @@ namespace Car_Rential.Migrations
                     b.Property<int>("PickupLocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RetunLocationId")
+                    b.Property<int>("ReturnLocationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReturnLocationId")

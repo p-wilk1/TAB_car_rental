@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Text;
 
@@ -17,7 +18,7 @@ namespace Car_Rential.Services
 {
     public class CustomersService : ICustomersService
     {
-        private readonly RentialDbContext _dbContext;
+        private readonly RentalDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher<Customer> _passwordHasher;
         private readonly IAuthorizationService _authorizationHandler;
@@ -25,7 +26,7 @@ namespace Car_Rential.Services
         private readonly AuthenticationSettings _authenticationSettings;
 
         public CustomersService(
-            RentialDbContext context,
+            RentalDbContext context,
             IMapper mapper,
             IPasswordHasher<Customer> passwordHasher,
             AuthenticationSettings authenticationSettings,
@@ -121,7 +122,7 @@ namespace Car_Rential.Services
 
         public void UpdateCustomer(InputCustomerDto customerDto, int customerId)
         {
-            var user = FindCustomer(customerId);
+            var user = FindCustomer(customerId, c => c.CustromerAddress);
 
             var whoIsAsking = (int)(_customerContextService.GetUserId ?? 0);
 
@@ -191,16 +192,25 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        private Customer FindCustomer(int customerId)
+        public Customer FindCustomer(
+            int customerId,
+            params Expression<Func<Customer, object>>[] expressions
+        )
         {
-            var result = _dbContext.Custormers
-                .Include(a => a.CustromerAddress)
-                .FirstOrDefault(x => x.Id == customerId);
+            var query = _dbContext.Custormers.Where(c => c.Id == customerId);
 
-            if (result == null)
+            if (query.IsNullOrEmpty())
             {
                 throw new CustomerNotFoundException("Account doesn't exist");
             }
+
+            foreach (var expression in expressions)
+            {
+                query.Include(expression);
+            }
+
+            var result = query.FirstOrDefault();
+
             return result;
         }
     }
