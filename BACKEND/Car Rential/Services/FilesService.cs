@@ -3,8 +3,10 @@ using Car_Rential.Entieties;
 using Car_Rential.Exceptions;
 using Car_Rential.Interfaces;
 using Car_Rential.Model;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace Car_Rential.Services
 {
@@ -13,12 +15,19 @@ namespace Car_Rential.Services
         private readonly RentalDbContext _dbContext;
         private readonly ICarsService _carsService;
         private readonly IMapper _mapper;
+        private readonly IReservationService _reservationService;
 
-        public FilesService(RentalDbContext dbContext, ICarsService carsService, IMapper mapper)
+        public FilesService(
+            RentalDbContext dbContext,
+            ICarsService carsService,
+            IMapper mapper,
+            IReservationService reservationService
+        )
         {
             _dbContext = dbContext;
             _carsService = carsService;
             _mapper = mapper;
+            _reservationService = reservationService;
         }
 
         public List<string> AddCarFiles(List<IFormFile> files, int carId)
@@ -87,6 +96,27 @@ namespace Car_Rential.Services
 
             car.Images.Remove(photo);
             _dbContext.SaveChanges();
+        }
+
+        public string GetInvoice(int reservationId)
+        {
+            var reservation = _reservationService.GetReservationById(
+                reservationId,
+                r => r.Car,
+                d => d.Discount,
+                c => c.Customer,
+                p => p.PickupLocation,
+                re => re.ReturnLocation
+            );
+
+            var basePath = Directory.GetCurrentDirectory();
+            var path = basePath + @"\Files\Invoices\nowy 1.txt";
+            var template = File.ReadAllText(path, Encoding.UTF8);
+            var doc = template
+                .Replace("{Data}", DateTime.Now.ToString())
+                .Replace("{Numerfaktury}", reservation.ReservatonNumber);
+
+            return doc;
         }
     }
 }

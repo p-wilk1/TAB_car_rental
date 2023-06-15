@@ -1,0 +1,33 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------
+SoGood Software
+Ul. Akademicka 16
+44-100 Gliwice
+soGood@software.com    506832741
+{Data}
+
+Nr faktury: {Numerfaktury}
+
+Odbiorca:
+{Imie i Nazwisko/Firma}
+{Adres}
+{Miasto, Kod pocztowy}
+
+Usluga:
+Opis uslugi: Wypozyczenie samochodu {Marka}, {Model}, {Nr. Rej} 
+Miejsce odbioru: {Adres odbioru}
+Miejsce zwrotu: {Adres zwrotu}
+Data wypozyczenia: {Data wypozyczenia}
+Data zwrotu: {Data zakonczenia}
+Czas trwania wypozyczenia: {Liczba dni}
+Cena za dobe: {Cena za dobê}
+Liczba dni: {Liczba dni}
+
+Podsumowanie:
+Koszt wypozyczenia: {Kwota do zaplaty}
+
+
+
+
+Z powazaniem,
+……………………………….
+----------------------------------------------------------------------------------------------------------------------------------------------------

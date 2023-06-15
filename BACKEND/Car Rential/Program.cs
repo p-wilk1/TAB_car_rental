@@ -87,8 +87,11 @@ builder.Services.AddScoped<UpdateCustomerValidator>();
 builder.Services.AddScoped<UpdateCarValidator>();
 builder.Services.AddScoped<RegisterCarValidator>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddDirectoryBrowser();
 
 var app = builder.Build();
+app.UseStaticFiles();
+app.UseDirectoryBrowser();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 var scope = app.Services.CreateScope();

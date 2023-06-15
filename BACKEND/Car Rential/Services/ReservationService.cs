@@ -118,7 +118,7 @@ namespace Car_Rential.Services
             return true;
         }
 
-        private Reservation GetReservationById(
+        public Reservation GetReservationById(
             int reservationId,
             params Expression<Func<Reservation, object>>[] expressions
         )

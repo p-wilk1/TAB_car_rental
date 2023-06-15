@@ -1,5 +1,8 @@
 ﻿using Car_Rential.Interfaces;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
 using Microsoft.AspNetCore.Mvc;
+using iText.Layout;
 
 namespace Car_Rential.Controllers
 {
@@ -33,6 +36,28 @@ namespace Car_Rential.Controllers
         {
             _filesService.RemovePhoto(photoId, carId);
             return NoContent();
+        }
+
+        [HttpGet("invoice")]
+        public ActionResult GetInvoice([FromQuery] int reservationId)
+        {
+            var doc = _filesService.GetInvoice(reservationId);
+
+            MemoryStream stream = new MemoryStream();
+            PdfWriter writer = new PdfWriter(stream);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            // Dodaj zawartość do dokumentu
+            Paragraph paragraph = new Paragraph(doc);
+            document.Add(paragraph);
+
+            // Zamknij dokument PDF
+            document.Close();
+
+            var contentType = "application/pdf";
+
+            return File(stream.ToArray(), contentType, "Invoice.pdf");
         }
     }
 }

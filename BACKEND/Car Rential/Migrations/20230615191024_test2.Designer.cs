@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Car_Rential.Migrations
 {
     [DbContext(typeof(RentalDbContext))]
-    [Migration("20230607153059_reservationFixed2Try")]
-    partial class reservationFixed2Try
+    [Migration("20230615191024_test2")]
+    partial class test2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -292,13 +292,13 @@ namespace Car_Rential.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PickupLocationId")
+                    b.Property<int?>("PickupLocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReservatonNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReturnLocationId")
+                    b.Property<int?>("ReturnLocationId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -339,7 +339,7 @@ namespace Car_Rential.Migrations
             modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>
                 {
                     b.HasOne("Car_Rential.Entieties.CustomerAddress", "CustromerAddress")
-                        .WithOne("Customer")
+                        .WithOne("Custormer")
                         .HasForeignKey("Car_Rential.Entieties.Customer", "CustromerAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -390,14 +390,12 @@ namespace Car_Rential.Migrations
                     b.HasOne("Car_Rential.Entieties.Office", "PickupLocation")
                         .WithMany("PickUpReservations")
                         .HasForeignKey("PickupLocationId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Car_Rential.Entieties.Office", "ReturnLocation")
                         .WithMany("ReturnReservations")
                         .HasForeignKey("ReturnLocationId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Car");
 
@@ -422,7 +420,7 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.CustomerAddress", b =>
                 {
-                    b.Navigation("Customer");
+                    b.Navigation("Custormer");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>
