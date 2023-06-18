@@ -1,20 +1,21 @@
 import NavbarCSS from './Navbar.module.css';
 import ButtonMultipurpose from '../shared/ButtonMultipurpose';
+import {Link} from "react-router-dom";
 
 export default function Navbar() {
 	return (
 		<header>
 			<nav className={NavbarCSS.navigationContainer}>
-				<a href="#">
-					<ButtonMultipurpose>(LOGO)</ButtonMultipurpose>
+
+				<Link to={"/"}><ButtonMultipurpose>(LOGO)</ButtonMultipurpose></Link>
+
 					{/* <img
             src="./src/assets/sogood-rentals-logo-transparent.png"
             className={NavbarCSS.logo}
           ></img> */}
-				</a>
 				<ul className={NavbarCSS.navigationList}>
 					<li>
-						<a href="#oferta">Oferta</a>
+						<Link to={"/Offer"}>Oferta</Link>
 					</li>
 					<li>
 						<a href="#">O nas</a>
