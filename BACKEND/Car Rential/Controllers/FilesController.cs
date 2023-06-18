@@ -3,6 +3,7 @@ using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using Microsoft.AspNetCore.Mvc;
 using iText.Layout;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace Car_Rential.Controllers
 {
@@ -15,6 +16,23 @@ namespace Car_Rential.Controllers
         public FilesController(IFilesService filesService)
         {
             _filesService = filesService;
+        }
+
+        [HttpGet]
+        public ActionResult GetFile([FromQuery] string filePath)
+        {
+            var doesExsist = Path.Exists(filePath);
+
+            if (!doesExsist)
+            {
+                return NotFound();
+            }
+
+            var contentProvider = new FileExtensionContentTypeProvider();
+            contentProvider.TryGetContentType(filePath, out var contentType);
+            var result = System.IO.File.ReadAllBytes(filePath);
+
+            return File(result, contentType, "test");
         }
 
         [HttpPost]
