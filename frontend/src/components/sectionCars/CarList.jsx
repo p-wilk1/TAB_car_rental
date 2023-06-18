@@ -1,7 +1,7 @@
 import CarListCSS from './CarList.module.css';
 import CarCard from './CarCard';
 
-function CarList({ cars }) {
+function CarList({ cars },{img2}) {
 	return (
 		<ul className={CarListCSS.carList} id="oferta">
 			{cars?.map((car, i) => {
@@ -9,12 +9,13 @@ function CarList({ cars }) {
 					<li key={i}>
 						<CarCard
 							price={car.pricePerDay}
-							brand={car.Brand}
-							model={car.Model}
-							seats={car.SeatsNumber}
-							gearbox={car.GearboxType}
-							mileage={car.Mileage}
-							fuel={car.FuelType}
+							brand={car.brand}
+							model={car.model}
+							seats={car.carInfo.seatsNumber}
+							gearbox={car.carInfo.gearboxType}
+							mileage={car.carInfo.mileage}
+							fuel={car.carInfo.fuelType}
+							img={img2}
 						></CarCard>
 					</li>
 				);

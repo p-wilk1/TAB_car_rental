@@ -13,9 +13,12 @@ const CarCard = ({
 	fuel,
 	img,
 }) => {
+
 	return (
+
 		<div className={CarCardCSS.carCard}>
-			<img src={images[0]}></img>
+			<img src={img} alt={"essa"}></img>
+
 			<h2>
 				{brand} {model}
 			</h2>
