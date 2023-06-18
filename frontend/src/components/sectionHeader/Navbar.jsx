@@ -2,7 +2,7 @@ import NavbarCSS from './Navbar.module.css';
 import ButtonMultipurpose from '../shared/ButtonMultipurpose';
 import {Link} from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({auth}) {
 	return (
 		<header>
 			<nav className={NavbarCSS.navigationContainer}>
@@ -27,12 +27,19 @@ export default function Navbar() {
 						<a href="#">Kontakt</a>
 					</li>
 					<li>
-						<Link to={"/Login"}>
+						{auth.accessToken ? (
+								<Link to={"/UserPanel"}>
+									<ButtonMultipurpose url="#">
+										Moj profil
+									</ButtonMultipurpose>
+								</Link>
+							):(
+						<Link to={"/UserPanel"}>
 							<ButtonMultipurpose url="#">
 								Zaloguj się
 							</ButtonMultipurpose>
 						</Link>
-
+						)}
 					</li>
 				</ul>
 			</nav>

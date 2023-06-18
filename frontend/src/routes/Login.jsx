@@ -13,7 +13,7 @@ const Login = () => {
     const[email,setEmail] = useState("")
     const[passwd, setPasswd] = useState("")
     const [errMsg, setErrMsg] = useState("")
-    const[success,setSuccess] = useState(false)
+    //const[success,setSuccess] = useState(false)
 
     useEffect(()=>{
         emailRef.current.focus()
@@ -58,7 +58,7 @@ const Login = () => {
     return (
         <section>
            <p >{errMsg}</p>
-            <h1>Sign In</h1>
+            <h1>Logowanie</h1>
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor="email">Email:</label>
@@ -71,7 +71,7 @@ const Login = () => {
                     value={email}
                     required
                 />
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Hasło:</label>
             <input
                 type="password"
                 id="password"
@@ -79,13 +79,13 @@ const Login = () => {
                 value={passwd}
                 required
             />
-                <button>Sign In</button>
+                <button>Zaloguj się</button>
             </form>
             <p>
-                Need an Account?
+                Nie masz konta?
                 <span>
                     <Link to={"/Register"}>
-                        Sign Up
+                        Załóż konto
                     </Link>
 
                 </span>
