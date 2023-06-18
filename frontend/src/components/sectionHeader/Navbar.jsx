@@ -27,9 +27,12 @@ export default function Navbar() {
 						<a href="#">Kontakt</a>
 					</li>
 					<li>
-						<ButtonMultipurpose url="#">
-							Zaloguj się
-						</ButtonMultipurpose>
+						<Link to={"/Login"}>
+							<ButtonMultipurpose url="#">
+								Zaloguj się
+							</ButtonMultipurpose>
+						</Link>
+
 					</li>
 				</ul>
 			</nav>
