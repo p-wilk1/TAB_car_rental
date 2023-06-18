@@ -37,7 +37,7 @@ const Home = () => {
     },[])
     return (
         <>
-            <Navbar />
+            <Navbar auth={auth} />
             <ColumnContainerHeader />
             <SectionAbout>
                 <AboutHeader />
