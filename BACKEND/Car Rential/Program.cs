@@ -114,7 +114,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-app.UseStaticFiles("/wwwroot");
+app.UseStaticFiles();
 app.UseCors("Front");
 app.UseDirectoryBrowser();
 app.UseMiddleware<ErrorHandlingMiddleware>();
