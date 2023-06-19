@@ -34,7 +34,7 @@ export default function Navbar({auth}) {
 									</ButtonMultipurpose>
 								</Link>
 							):(
-						<Link to={"/UserPanel"}>
+						<Link to={"/Login"}>
 							<ButtonMultipurpose url="#">
 								Zaloguj się
 							</ButtonMultipurpose>

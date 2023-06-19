@@ -104,7 +104,7 @@ const Register = () => {
 
     useEffect(()=>{
         setErrMsg("")
-    },[email,passwd,matchPasswd])
+    },[email,passwd,matchPasswd,zipcode,securityNumber,phone])
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -132,7 +132,6 @@ const Register = () => {
                 {
                     headers: {'Content-Type': "application/json"},
                 }
-
                 )
 
             navigate("/Login")
