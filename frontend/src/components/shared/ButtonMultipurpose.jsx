@@ -1,12 +1,12 @@
-import React from 'react';
-import ButtonMultipurposeCSS from './ButtonMultipurpose.module.css';
+import ButtonMultipurposeCSS from "./ButtonMultipurpose.module.css";
+import { Link } from "react-router-dom";
 
-function ButtonMultipurpose({ url, children }) {
-	return (
-		<button className={ButtonMultipurposeCSS.btn} href={url}>
-			{children}
-		</button>
-	);
+function ButtonMultipurpose({ to, children }) {
+  return (
+    <Link to={to}>
+      <button className={ButtonMultipurposeCSS.btn}>{children}</button>
+    </Link>
+  );
 }
 
 export default ButtonMultipurpose;

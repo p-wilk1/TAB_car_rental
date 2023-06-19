@@ -1,63 +1,62 @@
-import Navbar from '../components/sectionHeader/Navbar';
-import Footer from '../components/sectionFooter/Footer';
-import ColumnContainerHeader from '../components/sectionHeader/ColumnContainerHeader';
-import SectionAbout from '../components/sectionAbout/SectionAbout';
-import CarList from '../components/sectionCars/CarList';
-import {useContext, useEffect, useState} from 'react';
-import SectionCars from '../components/sectionCars/SectionCars';
-import Header from '../components/shared/Header';
-import CarFilters from '../components/sectionCars/CarFilters';
-import AboutHeader from '../components/sectionAbout/AboutHeader';
-import ColumnContainerAbout from '../components/sectionAbout/ColumnContainerAbout';
-import api from '../api/axiosConfig';
+import Navbar from "../components/sectionHeader/Navbar";
+import Footer from "../components/sectionFooter/Footer";
+import ColumnContainerHeader from "../components/sectionHeader/ColumnContainerHeader";
+import SectionAbout from "../components/sectionAbout/SectionAbout";
+import CarList from "../components/sectionCars/CarList";
+import { useContext, useEffect, useState } from "react";
+import SectionCars from "../components/sectionCars/SectionCars";
+import Header from "../components/shared/Header";
+import AboutHeader from "../components/sectionAbout/AboutHeader";
+import ColumnContainerAbout from "../components/sectionAbout/ColumnContainerAbout";
+import api from "../api/axiosConfig";
 import ButtonMultipurpose from "../components/shared/ButtonMultipurpose.jsx";
-import {Link} from "react-router-dom";
-import AuthContext from "../context/AuthProvider.jsx";
+import AuthContext from "../context/AuthProvider";
+// import AuthContext, { useAuth } from "../context/AuthProvider.jsx";
 
 const Home = () => {
-    const [cars, setCars] = useState();
+  const [cars, setCars] = useState();
 
-    const{auth} = useContext(AuthContext)
-    let photo;
-    console.log(auth)
+  const { auth } = useContext(AuthContext);
 
-    const getCars = async ()=>{
-        try{
-            //TODO ZDJECIA NIE DZIALAJA
-            const response = await api.get("api/car/all")
+  // const { auth } = useAuth();
+  // console.log(useAuth());
+  let photo;
+  //   console.log(auth);
 
-            setCars(response.data);
-        }catch(err){
-            console.log(err);
-        }
+  const getCars = async () => {
+    try {
+      //TODO ZDJECIA NIE DZIALAJA
+      const res = await api.get("api/car/all");
+
+      setCars(res.data);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    useEffect(()=>{
-        getCars()
-    },[])
-    return (
-        <>
-            <Navbar auth={auth} />
-            <ColumnContainerHeader />
-            <SectionAbout>
-                <AboutHeader />
-                <ColumnContainerAbout />
-            </SectionAbout>
-            <SectionCars>
-                <Header>Nasze samochody</Header>
-                <CarFilters />
-                <CarList cars={cars} img2={photo} />
-                <Link to={"/Offer"}>
-                    <ButtonMultipurpose>
-                        Zobacz więcej
-                    </ButtonMultipurpose>
-                </Link>
+  useEffect(() => {
+    getCars();
+  }, []);
 
-            </SectionCars>
+  return (
+    <>
+      <Navbar auth={auth} />
+      <ColumnContainerHeader />
 
-            <Footer />
-        </>
-    );
-}
+      <SectionCars>
+        <Header>Nasze samochody</Header>
+        <CarList cars={cars} />
+        <ButtonMultipurpose to="offer">Zobacz więcej</ButtonMultipurpose>
+      </SectionCars>
+
+      <SectionAbout>
+        <AboutHeader />
+        <ColumnContainerAbout />
+      </SectionAbout>
+
+      <Footer />
+    </>
+  );
+};
 
 export default Home;
