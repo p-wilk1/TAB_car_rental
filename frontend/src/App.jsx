@@ -5,6 +5,7 @@ import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
 import {AuthProvider} from "./context/AuthProvider";
 import UserPanel from "./routes/UserPanel.jsx";
+import AdminPanel from "./routes/AdminPanel.jsx";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 					<Route path="/Login" element={<Login/>}/>
 					<Route path="/Register" element={<Register/>}/>
 					<Route path="/UserPanel" element={<UserPanel/>}/>
+					<Route path="/AdminPanel/" element={<AdminPanel/>}/>
 			</Routes>
 			</AuthProvider>
 
