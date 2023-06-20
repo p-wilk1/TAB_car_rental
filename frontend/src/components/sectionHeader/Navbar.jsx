@@ -28,13 +28,13 @@ export default function Navbar({auth}) {
 					</li>
 					<li>
 						{auth.accessToken ? (
-								<Link to={"/UserPanel"}>
+								<Link to={"/user"}>
 									<ButtonMultipurpose url="#">
 										Moj profil
 									</ButtonMultipurpose>
 								</Link>
 							):(
-						<Link to={"/AdminPanel"}>
+						<Link to={"/admin/dashboard"}>
 							<ButtonMultipurpose url="#">
 								Zaloguj się
 							</ButtonMultipurpose>

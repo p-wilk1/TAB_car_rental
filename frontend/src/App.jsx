@@ -5,7 +5,10 @@ import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
 import {AuthProvider} from "./context/AuthProvider";
 import UserPanel from "./routes/UserPanel.jsx";
-import AdminPanel from "./routes/AdminPanel.jsx";
+import AdminDashboard from "./routes/AdminDashboard.jsx";
+import AdminCars from "./routes/AdminCars.jsx";
+import AdminUsers from "./routes/AdminUsers.jsx";
+
 
 function App() {
 
@@ -15,10 +18,13 @@ function App() {
 			<Routes>
 					<Route path="/" element={<Home/>}/>
 					<Route path="/Offer" element={<Offer/>}/>
-					<Route path="/Login" element={<Login/>}/>
-					<Route path="/Register" element={<Register/>}/>
-					<Route path="/UserPanel" element={<UserPanel/>}/>
-					<Route path="/AdminPanel/" element={<AdminPanel/>}/>
+					<Route path="/login" element={<Login/>}/>
+					<Route path="/register" element={<Register/>}/>
+					<Route path="/user" element={<UserPanel/>}/>
+					<Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+					<Route path="/admin/cars" element={<AdminCars/>}/>
+					<Route path="/admin/users" element={<AdminUsers/>}/>
+
 			</Routes>
 			</AuthProvider>
 
