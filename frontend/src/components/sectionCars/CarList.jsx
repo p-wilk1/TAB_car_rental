@@ -1,27 +1,25 @@
-import CarListCSS from './CarList.module.css';
-import CarCard from './CarCard';
+import CarListCSS from "./CarList.module.css";
+import CarCard from "./CarCard";
+import { useCars } from "../../context/CarsContext";
+import Spinner from "../shared/Spinner";
 
-function CarList({ cars },{img2}) {
-	return (
-		<ul className={CarListCSS.carList} id="oferta">
-			{cars?.map((car, i) => {
-				return (
-					<li key={i}>
-						<CarCard
-							price={car.pricePerDay}
-							brand={car.brand}
-							model={car.model}
-							seats={car.carInfo.seatsNumber}
-							gearbox={car.carInfo.gearboxType}
-							mileage={car.carInfo.mileage}
-							fuel={car.carInfo.fuelType}
-							img={img2}
-						></CarCard>
-					</li>
-				);
-			})}
-		</ul>
-	);
+function CarList({ maxLength = 6 }) {
+  const { cars, isLoading } = useCars();
+  const carsSliced = [...cars.slice(0, maxLength)];
+
+  if (isLoading) return <Spinner />;
+
+  return (
+    <ul className={CarListCSS.carList}>
+      {carsSliced?.map((car, i) => {
+        return (
+          <li key={i}>
+            <CarCard car={car}></CarCard>
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 export default CarList;

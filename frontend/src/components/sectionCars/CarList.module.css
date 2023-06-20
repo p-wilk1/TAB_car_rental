@@ -1,11 +1,12 @@
 .carList {
-	padding-top: 5rem;
-	margin: auto;
-	align-items: center;
-	justify-content: center;
-	width: 70%;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 2rem 1rem;
-	list-style: none;
+  padding-top: 5rem;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem 1rem;
+  list-style: none;
+  margin-bottom: 10rem;
 }

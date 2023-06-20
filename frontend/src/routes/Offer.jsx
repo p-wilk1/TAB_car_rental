@@ -1,13 +1,25 @@
-import React from 'react';
 import Navbar from "../components/sectionHeader/Navbar.jsx";
+import CarList from "../components/sectionCars/CarList.jsx";
+import Spinner from "../components/shared/Spinner.jsx";
+import { useCars } from "../context/CarsContext.jsx";
+import CarFilters from "../components/sectionCars/CarFilters.jsx";
+import Header from "../components/shared/Header.jsx";
+import Footer from "../components/sectionFooter/Footer.jsx";
+import styles from "./Offer.module.css";
 
 const Offer = () => {
-    return (
-        <>
-            <Navbar />
+  const { isLoading } = useCars();
+  if (isLoading) return <Spinner />;
 
-        </>
-    );
+  return (
+    <div className={styles.offer}>
+      <Navbar />
+      <Header>Nasze samochody</Header>
+      <CarFilters></CarFilters>
+      <CarList></CarList>
+      <Footer></Footer>
+    </div>
+  );
 };
 
 export default Offer;

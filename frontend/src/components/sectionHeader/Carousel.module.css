@@ -16,7 +16,7 @@
 .carousel {
   padding: 1rem;
   overflow: hidden;
-  background: #5E729E;
-
+  background: #5e729e;
+  cursor: grab;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 }

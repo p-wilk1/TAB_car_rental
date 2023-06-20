@@ -1,40 +1,37 @@
-import ButtonMultipurpose from '../shared/ButtonMultipurpose';
-import CarAttribute from './CarAttribute';
-import CarCardCSS from './CarCard.module.css';
-import images from '/src/images.jsx';
+/* eslint-disable react/prop-types */
+import ButtonMultipurpose from "../shared/ButtonMultipurpose";
+import CarAttribute from "./CarAttribute";
+import styles from "./CarCard.module.css";
+import images from "/src/images.jsx";
 
-const CarCard = ({
-	price,
-	brand,
-	model,
-	seats,
-	gearbox,
-	mileage,
-	fuel,
-	img,
-}) => {
+const CarCard = ({ car }) => {
+  const { brand, carInfo, model, pricePerDay, imagePath } = car;
+  console.log(car);
+  return (
+    <div className={styles.carCard}>
+      <img src={imagePath} alt={"essa"}></img>
 
-	return (
-
-		<div className={CarCardCSS.carCard}>
-			<img src={img} alt={"essa"}></img>
-
-			<h2>
-				{brand} {model}
-			</h2>
-			<p>{price}zł/doba</p>
-			<div className={CarCardCSS.carAttributes}>
-				<CarAttribute
-					emoji="🐎"
-					text={mileage / 100 + 'km przebiegu'}
-				/>
-				<CarAttribute emoji="👍" text={gearbox} />
-				<CarAttribute emoji="💺" text={seats + ' miejsc siedzących'} />
-				<CarAttribute emoji="🛢" text={fuel} />
-			</div>
-			<ButtonMultipurpose url="#">Szczegóły</ButtonMultipurpose>
-		</div>
-	);
+      <h2>
+        {brand} {model}
+      </h2>
+      <p>{pricePerDay}zł/doba</p>
+      <div className={styles.carAttributes}>
+        <CarAttribute
+          emoji="🐎"
+          text={carInfo.mileage / 100 + "km przebiegu"}
+        />
+        <CarAttribute emoji="👍" text={carInfo.gearboxType} />
+        <CarAttribute
+          emoji="💺"
+          text={carInfo.seatsNumber + " miejsc siedzących"}
+        />
+        <CarAttribute emoji="🛢" text={carInfo.fuelType} />
+      </div>
+      <ButtonMultipurpose to={`/details/${car.id}`}>
+        Szczegóły
+      </ButtonMultipurpose>
+    </div>
+  );
 };
 
 export default CarCard;
