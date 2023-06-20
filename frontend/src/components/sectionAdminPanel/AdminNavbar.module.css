@@ -1,5 +1,6 @@
 *{
     font-family: 'Poppins', sans-serif;
+
 }
 
 :root{
@@ -21,9 +22,10 @@
     --tran-03: all 0.2s ease;
 }
 
-.essa{
-    min-height: 100vh;
-    background-color: var(--primary-color);
+.navPanel{
+    display: flex;
+    overflow-x: hidden;
+    /*flex-direction: column;*/
 }
 .nav2Links{
     padding: 0;
