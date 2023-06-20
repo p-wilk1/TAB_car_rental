@@ -140,7 +140,12 @@ const Register = () => {
             if(!err?.response){
                 setErrMsg("No Server Response")
             }else if(err.response?.status === 400){
-                setErrMsg("Invalid data")
+                let errorMessage ="";
+               // console.log(err.response.data)
+                for(let pop in err.response.data){
+                  errorMessage += err.response.data[pop] +   "<br/>"
+                }
+                setErrMsg(errorMessage)
             }
         }
     }

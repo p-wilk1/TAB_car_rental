@@ -1,0 +1,113 @@
+*{
+    font-family: 'Poppins', sans-serif;
+
+}
+
+:root{
+    /* ===== Colors ===== */
+    --primary-color: #0E4BF1;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #fff;
+
+    /* ====== Transition ====== */
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}
+
+.navPanel{
+    display: flex;
+    overflow-x: hidden;
+    /*flex-direction: column;*/
+}
+.nav2Links{
+    padding: 0;
+}
+.nav2{
+    margin-top: 5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    transition: var(--tran-05);
+}
+.nav2.close{
+    width: 73px;
+}
+.nav2 .logoName{
+    display: flex;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    align-items: center;
+}
+.nav2 .logoName .logo_name{
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 14px;
+    transition: var(--tran-05);
+}
+.nav2.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav2 .menuItems{
+    margin-top: 60px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menuItems li{
+    list-style: none;
+}
+.menuItems li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+.nav2Links li a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+.menuItems li a i{
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black-light-color);
+}
+.menuItems li a .linkName{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--black-light-color);
+    transition: var(--tran-05);
+}
+.nav2.close li a .linkName{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav2Links li a:hover i,
+.nav2Links li a:hover .link-name{
+    color: var(--primary-color);
+}

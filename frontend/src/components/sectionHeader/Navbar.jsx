@@ -17,6 +17,7 @@ export default function Navbar() {
             src="./src/assets/sogood-rentals-logo-transparent.png"
             className={NavbarCSS.logo}
           ></img> */}
+
         <ul className={NavbarCSS.navigationList}>
           <li>
             <Link to={"/Offer"}>Oferta</Link>

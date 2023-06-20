@@ -10,6 +10,9 @@ import AboutHeader from "./components/sectionAbout/AboutHeader.jsx";
 import ColumnContainerAbout from "./components/sectionAbout/ColumnContainerAbout.jsx";
 import Details from "./routes/Details.jsx";
 import { CarsProvider } from "./context/CarsContext.jsx";
+import AdminDashboard from "./routes/AdminDashboard.jsx";
+import AdminCars from "./routes/AdminCars.jsx";
+import AdminUsers from "./routes/AdminUsers.jsx";
 
 function App() {
   return (
@@ -28,10 +31,13 @@ function App() {
                 </SectionAbout>
               }
             />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/UserPanel" element={<UserPanel />} />
-            <Route path="/details/:id" element={<Details />} />
+				  <Route path="/login" element={<Login/>}/>
+					<Route path="/register" element={<Register/>}/>
+           <Route path="/user" element={<UserPanel/>}/>
+           <Route path="/details/:id" element={<Details />} />
+           <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+					<Route path="/admin/cars" element={<AdminCars/>}/>
+					<Route path="/admin/users" element={<AdminUsers/>}/>
           </Routes>
         </CarsProvider>
       </AuthProvider>
