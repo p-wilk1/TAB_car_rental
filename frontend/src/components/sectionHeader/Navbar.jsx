@@ -3,9 +3,11 @@ import ButtonMultipurpose from "../shared/ButtonMultipurpose";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
 import { useContext, useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 
 export default function Navbar() {
   // const { auth } = useAuth();
+  let claim
   const { auth, setAuth } = useContext(AuthContext);
   const [logOut, setLogOut] = useState(false);
 
@@ -15,6 +17,10 @@ export default function Navbar() {
   useEffect(() => {
     setAuth({ accessToken: null });
   }, [auth.accessToken]);
+  if(auth.accessToken){
+   const token = jwtDecode(auth.accessToken)
+    claim = token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+  }
 
   return (
     <header>
@@ -41,9 +47,15 @@ export default function Navbar() {
           </li>
           {auth.accessToken ? (
             <>
-              <li>
-                <ButtonMultipurpose to={"/user"}>Moj profil</ButtonMultipurpose>
-              </li>
+              {
+                claim==="Admin" ?(
+                    <li>
+                      <ButtonMultipurpose to={"/admin/dashboard"}>Moj profil</ButtonMultipurpose>
+                    </li>
+                ):<li>
+                  <ButtonMultipurpose to={"/user"}>Moj profil</ButtonMultipurpose>
+                </li>
+              }
               <li>
                 <ButtonMultipurpose to={"/"} onClick={handleLogOut}>
                   Wyloguj
