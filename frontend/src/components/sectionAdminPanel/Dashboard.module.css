@@ -77,29 +77,9 @@ body{
 .boxes .box.box3{
     background-color: var(--box3-color);
 }
-.dashContent .activity .activityData{
+.dashContent .activity {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-}
-.activity .activityData{
-    display: flex;
-}
-.activityData .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
-}
-.activityData .dataTitle{
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-.activityData .data .dataList{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
 }
