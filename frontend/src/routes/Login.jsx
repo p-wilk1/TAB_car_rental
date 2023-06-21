@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 // import AuthContext, { useAuth } from "../context/AuthProvider.jsx";
 import api from "../api/axiosConfig";
 import { useNavigate } from "react-router";
+import styles from "./Login.module.css";
 import AuthContext from "../context/AuthProvider";
+import Navbar from "../components/sectionHeader/Navbar";
+import Footer from "../components/sectionFooter/Footer";
 
 const LOGIN_URL = "api/customer/login";
 
@@ -69,37 +72,41 @@ const Login = () => {
   };
 
   return (
-    <section>
-      <p>{errMsg}</p>
-      <h1>Logowanie</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          ref={emailRef}
-          autoComplete="off"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
-        <label htmlFor="password">Hasło:</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPasswd(e.target.value)}
-          value={passwd}
-          required
-        />
-        <button>Zaloguj się</button>
-      </form>
-      <p>
-        Nie masz konta?
-        <span>
-          <Link to={"/Register"}>Załóż konto</Link>
-        </span>
-      </p>
-    </section>
+    <>
+      <Navbar />
+      <section className={styles.loginPage}>
+        <p>{errMsg}</p>
+        <h1>Logowanie</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            ref={emailRef}
+            autoComplete="off"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
+          <label htmlFor="password">Hasło:</label>
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPasswd(e.target.value)}
+            value={passwd}
+            required
+          />
+          <button>Zaloguj się</button>
+          <p>
+            Nie masz konta?
+            <Link to={"/Register"}>
+              <span> Załóż konto</span>
+            </Link>
+          </p>
+        </form>
+      </section>
+      <Footer />
+    </>
   );
 };
 

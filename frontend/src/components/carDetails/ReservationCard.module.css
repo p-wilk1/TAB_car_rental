@@ -1,3 +1,16 @@
 .reservationCard h2 {
-  color: black;
+  color: white;
+  font-weight: 100;
+}
+.reservationCard {
+  margin: 3rem;
+  margin-top: 6rem;
+  height: 10rem;
+  display: flex;
+  background-color: #5e729e;
+  padding: 2rem;
+  flex-direction: column;
+  padding-bottom: 7rem;
+  border: 1px solid #5e729e;
+  border-radius: 2rem;
 }

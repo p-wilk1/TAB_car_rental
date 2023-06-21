@@ -1,0 +1,122 @@
+/* .registerPage {
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: red;
+}
+
+
+.registerPage h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.registerPage form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.registerPage label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+p {
+  margin-bottom: 10px;
+}
+*/
+
+.registerPage input {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0 15px;
+}
+.instructions {
+  margin-top: 5px;
+  font-size: 12px;
+  color: red;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+.registerPage {
+  margin: 8rem 20rem 5rem 20rem;
+  justify-content: center;
+  display: grid;
+  background-color: #5e729e;
+  padding: 3rem 0 0 3rem;
+  border: solid 1px transparent;
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+.registerPage label {
+  margin-bottom: 1rem;
+}
+
+.row {
+  margin: 1rem;
+  display: flex;
+  border-bottom: 1px solid #f1efeb;
+  padding: 0.7rem 2rem 0.7rem 2rem;
+}
+
+.column1of2 {
+  flex-basis: 50%;
+}
+
+.registerPage label {
+  color: #f1efeb;
+}
+.registerPage p {
+  color: #f1efeb;
+}
+
+.registerPage h1 {
+  color: #f1efeb;
+  margin: auto;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  border-bottom: solid 1px #f1efeb;
+}
+
+.signUpButton {
+  display: grid;
+  place-items: center;
+  margin-top: 5rem;
+}
+
+.signUpButton button {
+  padding: 1rem;
+  text-transform: uppercase;
+  border: solid 1px transparent;
+  border-radius: 1rem;
+  background-color: #f1efeb;
+  color: #10264a;
+}
+.signUpLogin {
+  display: grid;
+  place-items: center;
+  margin: 2rem;
+}
