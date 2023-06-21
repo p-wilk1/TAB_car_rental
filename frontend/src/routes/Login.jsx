@@ -50,12 +50,12 @@ const Login = () => {
           //withCredentials: true
         }
       );
-      // console.log(JSON.stringify(response?.data))
-
       const accessToken = response?.data;
-      setAuth({ email, passwd, accessToken });
-      setEmail("");
-      setPasswd("");
+
+      //setting auth token
+      setAuth({  accessToken });
+      //saving token to storage
+      sessionStorage.setItem("token", accessToken)
       navigate("/offer");
     } catch (err) {
       if (!err?.response) {
