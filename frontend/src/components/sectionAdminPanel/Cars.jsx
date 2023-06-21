@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import CarsStyle from "./Cars.module.css";
 import api from "../../api/axiosConfig.js";
 import ButtonMultipurpose from "../shared/ButtonMultipurpose.jsx";
+import {useTable} from "react-table";
 
 const Cars = () => {
     let i = 0;
@@ -20,6 +21,47 @@ const Cars = () => {
         getCars()
     },[])
 
+
+    //console.log(cars)
+
+    const columns = React.useMemo(()=>[
+        {
+            Header:"Marka",
+            accessor: "brand"
+        },
+        {
+            Header:"Model",
+            accessor: "model"
+        },
+        {
+            Header:"Numer rejestracyjny",
+            accessor: "registrationNumber"
+        },
+        {
+            Header:"Cena",
+            accessor: "pricePerDay",
+
+        },
+        {
+            Header:"Przebieg[km]",
+            accessor: "carInfo.mileage",
+
+        },
+        {
+            Header:"Rok produkcji",
+            accessor: "carInfo.productionYear",
+
+        },
+        {
+            Header:"Biuro",
+            accessor: "office.officeName",
+
+        },
+
+    ],[]);
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+        useTable({ columns, data:cars ||[]});
+
     return (
         <>
             <section className={CarsStyle.dashboard}>
@@ -32,63 +74,49 @@ const Cars = () => {
                             <i className="uil uil-clock-three"></i>
                             <span className={CarsStyle.text}>Aktualne samochody</span>
                         </div>
-
-                        <div className={CarsStyle.activityData2}>
-                            <span className={CarsStyle.dataTitle}>Marka</span>
-                            <span className={CarsStyle.dataTitle}>Model</span>
-                            <span className={CarsStyle.dataTitle}>Rejestracja</span>
-                            <span className={CarsStyle.dataTitle}>Przebieg[km]</span>
-                            <span className={CarsStyle.dataTitle}> R.produkcji</span>
-                            <span className={CarsStyle.dataTitle}>Cena[zl]</span>
-                            <span className={CarsStyle.dataTitle}>Biuro</span>
-                        </div>
-
-                        {
-                            cars?.map((car,i)=>{
-                                return(
-                                    <div className={CarsStyle.activityData}>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.brand}</span>
-
-                                        </div>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.model}</span>
-
-                                        </div>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.registrationNumber}</span>
-
-                                        </div>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.carInfo.mileage}</span>
-
-                                        </div>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.carInfo.productionYear}</span>
-
-                                        </div>
-                                        <div className={CarsStyle.data}>
-
-                                            <span className={CarsStyle.dataList}>{car.pricePerDay}</span>
-                                        </div>
-                                        <div className={CarsStyle.data}>
-                                            <span className={CarsStyle.dataList}>{car.office.officeName}</span>
-                                        </div>
-
-
-
-                                    </div>
-
-                                )
-                            })
-                        }
-
                     </div>
+                    {
+                        //TODO STYLIZOWANIE
+                    }
+                    <div className={CarsStyle}>
+                        <table {...getTableProps()}>
+                            <thead>
+                            {headerGroups.map((headerGroup) => (
+                                <tr {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map((column) => (
+                                        <th {...column.getHeaderProps()}>
+                                            {column.render("Header")}
+                                        </th>
+                                    ))}
+                                </tr>
+                            ))}
+                            </thead>
+                            <tbody {...getTableBodyProps()}>
+                            {rows.map((row) => {
+                                prepareRow(row);
+                                //TUTAJ MOZNA DOSTAC ID SAMOCHODU
+                                //console.log(row.original.id)
+                                return (
+                                    <tr {...row.getRowProps()}>
+                                        {row.cells.map((cell,index) => (
+                                            <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                                        ))}
+                                        {
+
+                                        }
+                                        <ButtonMultipurpose>
+                                            edit
+                                        </ButtonMultipurpose>
+                                        <ButtonMultipurpose>
+                                            delete
+                                        </ButtonMultipurpose>
+                                    </tr>
+                                );
+                            })}
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </section>
         </>
