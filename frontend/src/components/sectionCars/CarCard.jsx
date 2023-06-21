@@ -6,7 +6,7 @@ import images from "/src/images.jsx";
 
 const CarCard = ({ car }) => {
   const { brand, carInfo, model, pricePerDay, imagePath } = car;
-  console.log(car);
+ // console.log(car);
   return (
     <div className={styles.carCard}>
       <img src={imagePath} alt={"essa"}></img>
