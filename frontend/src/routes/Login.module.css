@@ -17,6 +17,10 @@
   color: #f1efeb;
 }
 
+.loginPage form {
+  margin: auto;
+}
+
 .loginPage form label {
   color: #f1efeb;
   margin: 1rem;
@@ -28,6 +32,7 @@
 }
 
 .loginPage p {
+  margin: auto;
   color: #f1efeb;
   font-size: 1.2rem;
   text-decoration: none;
@@ -36,4 +41,22 @@
 .loginPage span {
   color: #10264a;
   text-decoration: none;
+}
+.loginPage form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.loginPage label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.loginPage input[type="text"],
+.loginPage input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
 }

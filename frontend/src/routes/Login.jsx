@@ -97,13 +97,13 @@ const Login = () => {
             required
           />
           <button>Zaloguj się</button>
+          <p>
+            Nie masz konta?
+            <Link to={"/Register"}>
+              <span> Załóż konto</span>
+            </Link>
+          </p>
         </form>
-        <p>
-          Nie masz konta?
-          <Link to={"/Register"}>
-            <span> Załóż konto</span>
-          </Link>
-        </p>
       </section>
       <Footer />
     </>
