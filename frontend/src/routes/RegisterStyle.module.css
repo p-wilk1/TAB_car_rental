@@ -79,7 +79,7 @@ p {
   margin: 1rem;
   display: flex;
   border-bottom: 1px solid #f1efeb;
-  padding: 0.7rem;
+  padding: 0.7rem 2rem 0.7rem 2rem;
 }
 
 .column1of2 {

@@ -54,8 +54,7 @@
   font-weight: bold;
   margin-top: 10px;
 }
-.loginPage input[type="text"],
-.loginPage input[type="password"] {
+.loginPage input {
   width: 100%;
   padding: 10px;
   margin: 5px 0 15px;
