@@ -1,97 +1,99 @@
-import React, {useEffect, useState} from 'react';
-import UserStyle from "./Users.module.css";
-import api from "../../api/axiosConfig.js";
-import CarsStyle from "./Cars.module.css";
+import React from 'react';
+import ReservationStyle from "./Reservations.module.css"
 import ButtonMultipurpose from "../shared/ButtonMultipurpose.jsx";
 import {useTable} from "react-table";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthContext from "../../context/AuthProvider.jsx";
+import api from "../../api/axiosConfig.js";
 
-const USERS_URL = "api/customer/all"
+const RESERVATIONS_URL = "api/res"
 
-const Users = () => {
+const Reservations = () => {
     const{auth} = useContext(AuthContext)
-    const [users,setUsers] = useState()
+    const [reservations,setReservations] = useState()
 
     const headers = {
         Authorization: `Bearer ${auth.accessToken}`
     }
-    const getUsers = async ()=>{
+    const getReservations = async ()=>{
         try{
-            const response = await api.get(USERS_URL,{headers})
-           const filteredData = response.data.filter(item => item.firstName !=="Admin")
-            setUsers(filteredData);
+            const response = await api.get(RESERVATIONS_URL,{headers})
+            const filteredData = response.data.filter(item => item.customer.firstName !=="Admin")
+            setReservations(filteredData);
         }catch(err){
             //console.log(err);
         }
     }
     useEffect(()=>{
-        getUsers()
+        getReservations()
     },[])
 
-    console.log(users)
     const columns = React.useMemo(()=>[
         {
             Header:"Imie",
-            accessor: "firstName"
+            accessor: "customer.firstName"
         },
         {
             Header:"Nazwisko",
-            accessor: "lastName"
+            accessor: "customer.lastName"
         },
         {
             Header:"Numer telefonu",
-            accessor: "phoneNumber"
-        },
-        {
-            Header:"Email",
-            accessor: "email",
-
+            accessor: "customer.phoneNumber"
         },
         {
             Header:"Marka",
-            accessor: "reservationList[0].marka",
+            accessor: "car.brand",
 
         },
         {
             Header:"Model",
-            accessor: "reservationList[0].model",
+            accessor: "car.model",
+
+        },
+        {
+            Header:"Miejsce wypozyczenia",
+            accessor: "pickupLocation.officeName",
+
+        },
+        {
+            Header:"Miejsce oddania",
+            accessor: "returnLocation.officeName",
 
         },
         {
             Header:"Data rozpoczecia",
-            accessor: "reservationList[0].startDate",
+            accessor: "startDate",
 
         },
         {
             Header:"Data zakonczenia",
-            accessor: "reservationList[0].endDate",
+            accessor: "endDate",
 
         },
 
     ],[]);
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-        useTable({ columns, data:users ||[]});
 
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+        useTable({ columns, data:reservations ||[]});
 
     return (
         <>
-            <section className={UserStyle.dashboard}>
-                <div className={UserStyle.dashContent}>
+            <section className={ReservationStyle.dashboard}>
+                <div className={ReservationStyle.dashContent}>
                     <div className="overview">
                     </div>
 
-                    <div className={UserStyle.activity}>
-                        <div className={UserStyle.title}>
+                    <div className={ReservationStyle.activity}>
+                        <div className={ReservationStyle.title}>
                             <i className="uil uil-clock-three"></i>
-                            <span className={UserStyle.text}>Aktualni uzytkownicy</span>
+                            <span className={ReservationStyle.text}>Aktualne rezerwacje</span>
                         </div>
-
                     </div>
                     {
                         //TODO STYLIZOWANIE
                     }
-                    <div className={UserStyle}>
+                    <div className={ReservationStyle}>
                         <table {...getTableProps()}>
                             <thead>
                             {headerGroups.map((headerGroup) => (
@@ -117,22 +119,17 @@ const Users = () => {
                                         {
 
                                         }
-                                        <ButtonMultipurpose>
-                                            edit
-                                        </ButtonMultipurpose>
-                                        <ButtonMultipurpose>
-                                            delete
-                                        </ButtonMultipurpose>
                                     </tr>
                                 );
                             })}
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </section>
         </>
     );
 };
 
-export default Users;
+export default Reservations;

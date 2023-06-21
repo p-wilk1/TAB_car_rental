@@ -13,6 +13,7 @@ import { CarsProvider } from "./context/CarsContext.jsx";
 import AdminDashboard from "./routes/AdminDashboard.jsx";
 import AdminCars from "./routes/AdminCars.jsx";
 import AdminUsers from "./routes/AdminUsers.jsx";
+import AdminReservations from "./routes/AdminReservations.jsx";
 
 function App() {
   return (
@@ -31,13 +32,14 @@ function App() {
                 </SectionAbout>
               }
             />
-				  <Route path="/login" element={<Login/>}/>
-					<Route path="/register" element={<Register/>}/>
-           <Route path="/user" element={<UserPanel/>}/>
-           <Route path="/details/:id" element={<Details />} />
-           <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
-					<Route path="/admin/cars" element={<AdminCars/>}/>
-					<Route path="/admin/users" element={<AdminUsers/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/user" element={<UserPanel/>}/>
+              <Route path="/details/:id" element={<Details />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
+              <Route path="/admin/cars" element={<AdminCars/>}/>
+              <Route path="/admin/users" element={<AdminUsers/>}/>
+              <Route path="/admin/reservations" element={<AdminReservations/>}/>
           </Routes>
         </CarsProvider>
       </AuthProvider>
