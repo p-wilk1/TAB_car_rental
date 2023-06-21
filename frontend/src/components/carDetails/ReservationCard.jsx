@@ -16,7 +16,11 @@ function reservationCard({ car }) {
         Kontakt do odbioru:{" "}
         {`${office.officeName}, email ${office.email}, nr telefonu ${office.phoneNumber}`}
       </h2>
-      <ButtonMultipurpose>Rezerwacja</ButtonMultipurpose>
+      {auth.accessToken ? (
+        <ButtonMultipurpose>Rezerwacja</ButtonMultipurpose>
+      ) : (
+        <ButtonMultipurpose>Zaloguj się, by zarezerwować</ButtonMultipurpose>
+      )}
     </div>
   );
 }
