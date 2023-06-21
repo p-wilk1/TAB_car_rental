@@ -2,23 +2,19 @@ import NavbarCSS from "./Navbar.module.css";
 import ButtonMultipurpose from "../shared/ButtonMultipurpose";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Navbar() {
   // const { auth } = useAuth();
-  const { auth,setAuth } = useContext(AuthContext);
-  const [logOut, setLogOut] = useState(false)
-
-
+  const { auth, setAuth } = useContext(AuthContext);
+  const [logOut, setLogOut] = useState(false);
 
   const handleLogOut = () => {
-    setLogOut(true)
+    setLogOut(true);
   };
   useEffect(() => {
-      setAuth({accessToken: null})
-
+    setAuth({ accessToken: null });
   }, [auth.accessToken]);
-
 
   return (
     <header>
@@ -43,22 +39,23 @@ export default function Navbar() {
           <li>
             <a href="#">Kontakt</a>
           </li>
-          <li>
-            {auth.accessToken ? (
-                <>
-              <ButtonMultipurpose to={"/user"}>
-                Moj profil
-              </ButtonMultipurpose>
-                  <ButtonMultipurpose to={"/"} onClick={handleLogOut}>
-                    Wyloguj
-                  </ButtonMultipurpose>
-
-                </>
-            ) : (
+          {auth.accessToken ? (
+            <>
+              <li>
+                <ButtonMultipurpose to={"/user"}>Moj profil</ButtonMultipurpose>
+              </li>
+              <li>
+                <ButtonMultipurpose to={"/"} onClick={handleLogOut}>
+                  Wyloguj
+                </ButtonMultipurpose>
+              </li>
+            </>
+          ) : (
+            <li>
               <ButtonMultipurpose to="/Login">Zaloguj się</ButtonMultipurpose>
-            )}
-            {/* <ButtonMultipurpose to="login">Zaloguj się</ButtonMultipurpose> */}
-          </li>
+            </li>
+          )}
+          {/* <ButtonMultipurpose to="login">Zaloguj się</ButtonMultipurpose> */}
         </ul>
       </nav>
     </header>
