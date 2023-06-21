@@ -8,7 +8,7 @@ import Footer from "../components/sectionFooter/Footer.jsx";
 import styles from "./Offer.module.css";
 
 const Offer = () => {
-  const { isLoading } = useCars();
+  const { isLoading, cars } = useCars();
   if (isLoading) return <Spinner />;
 
   return (
@@ -16,7 +16,7 @@ const Offer = () => {
       <Navbar />
       <Header>Nasze samochody</Header>
       <CarFilters></CarFilters>
-      <CarList></CarList>
+      <CarList maxLength={cars.length}></CarList>
       <Footer></Footer>
     </div>
   );

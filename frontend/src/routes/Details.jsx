@@ -34,18 +34,18 @@ const testCar = {
 };
 
 function Details() {
-  const { cars } = useCars();
+  const { cars, currentCar } = useCars();
   const { id } = useParams();
-
-  const currentCar = cars.filter((car) => car.id === Number(id));
+  console.log(currentCar);
+  const carDisplay = cars.filter((car) => car.id === Number(id));
   //   useEffect(() => {
   //     getCar(id);
   //   }, [id, getCar]);
 
   const { brand, carInfo, imagePath, model, registrationNumber } =
-    currentCar[0];
+    carDisplay[0];
 
-  console.log(currentCar);
+  // console.log(carDisplay);
   //   if (isLoading) return <Spinner />;
 
   return (
