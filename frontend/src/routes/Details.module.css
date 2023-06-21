@@ -54,7 +54,9 @@
 }
 
 .detailsTable p {
+  color: #10264a;
   font-size: 1.3rem;
+  padding: 0.4rem;
   border-bottom: solid 1px #5e729e;
 }
 
