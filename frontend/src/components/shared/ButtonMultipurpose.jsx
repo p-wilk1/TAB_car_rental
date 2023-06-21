@@ -1,11 +1,24 @@
 import ButtonMultipurposeCSS from "./ButtonMultipurpose.module.css";
 import { Link } from "react-router-dom";
 
-function ButtonMultipurpose({ to, children }) {
+function ButtonMultipurpose({ to, children, onClick},) {
+
+    const handleLogOut = () =>{
+        sessionStorage.clear()
+
+    }
+
   return (
-    <Link to={to}>
-      <button className={ButtonMultipurposeCSS.btn}>{children}</button>
-    </Link>
+      !onClick ? (
+          <Link to={to}>
+              <button className={ButtonMultipurposeCSS.btn}>{children}</button>
+          </Link>
+          ):(
+          <Link to={to}>
+              <button className={ButtonMultipurposeCSS.btn} onClick={handleLogOut}>{children}</button>
+          </Link>
+      )
+
   );
 }
 

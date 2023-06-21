@@ -2,11 +2,23 @@ import NavbarCSS from "./Navbar.module.css";
 import ButtonMultipurpose from "../shared/ButtonMultipurpose";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthProvider";
-import { useContext } from "react";
+import {useContext, useEffect, useState} from "react";
 
 export default function Navbar() {
   // const { auth } = useAuth();
-  const { auth } = useContext(AuthContext);
+  const { auth,setAuth } = useContext(AuthContext);
+  const [logOut, setLogOut] = useState(false)
+
+
+
+  const handleLogOut = () => {
+    setLogOut(true)
+  };
+  useEffect(() => {
+      setAuth({accessToken: null})
+
+  }, [auth.accessToken]);
+
 
   return (
     <header>
@@ -33,9 +45,15 @@ export default function Navbar() {
           </li>
           <li>
             {auth.accessToken ? (
-              <ButtonMultipurpose to={"/UserPanel"}>
+                <>
+              <ButtonMultipurpose to={"/user"}>
                 Moj profil
               </ButtonMultipurpose>
+                  <ButtonMultipurpose to={"/"} onClick={handleLogOut}>
+                    Wyloguj
+                  </ButtonMultipurpose>
+
+                </>
             ) : (
               <ButtonMultipurpose to="/Login">Zaloguj się</ButtonMultipurpose>
             )}
