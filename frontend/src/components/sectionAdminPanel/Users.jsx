@@ -7,17 +7,18 @@ import {useTable} from "react-table";
 import {useContext} from "react";
 import AuthContext from "../../context/AuthProvider.jsx";
 
+const USERS_URL = "api/customer/all"
+
 const Users = () => {
     const{auth} = useContext(AuthContext)
     const [users,setUsers] = useState()
-
 
     const headers = {
         Authorization: `Bearer ${auth.accessToken}`
     }
     const getUsers = async ()=>{
         try{
-            const response = await api.get("api/customer/all",{headers})
+            const response = await api.get(USERS_URL,{headers})
            const filteredData = response.data.filter(item => item.firstName !=="Admin")
             setUsers(filteredData);
         }catch(err){
@@ -45,6 +46,26 @@ const Users = () => {
         {
             Header:"Email",
             accessor: "email",
+
+        },
+        {
+            Header:"Marka",
+            accessor: "reservationList[0].marka",
+
+        },
+        {
+            Header:"Model",
+            accessor: "reservationList[0].model",
+
+        },
+        {
+            Header:"Data rozpoczecia",
+            accessor: "reservationList[0].startDate",
+
+        },
+        {
+            Header:"Data zakonczenia",
+            accessor: "reservationList[0].endDate",
 
         },
 

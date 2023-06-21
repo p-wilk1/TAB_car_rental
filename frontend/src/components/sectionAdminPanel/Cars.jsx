@@ -4,6 +4,8 @@ import api from "../../api/axiosConfig.js";
 import ButtonMultipurpose from "../shared/ButtonMultipurpose.jsx";
 import {useTable} from "react-table";
 
+const CARS_URL = "api/car/all"
+
 const Cars = () => {
     let i = 0;
 
@@ -11,7 +13,7 @@ const Cars = () => {
 
     const getCars = async ()=>{
         try{
-            const response = await api.get("api/car/all")
+            const response = await api.get(CARS_URL)
             setCars(response.data);
         }catch(err){
             console.log(err);
@@ -73,6 +75,12 @@ const Cars = () => {
                         <div className={CarsStyle.title}>
                             <i className="uil uil-clock-three"></i>
                             <span className={CarsStyle.text}>Aktualne samochody</span>
+                        </div>
+                        <div>
+                            //TODO ten button tez popraw
+                            <ButtonMultipurpose>
+                                dodaj auto
+                            </ButtonMultipurpose>
                         </div>
                     </div>
                     {
