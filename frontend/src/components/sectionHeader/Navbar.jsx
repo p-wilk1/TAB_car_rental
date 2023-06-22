@@ -12,6 +12,7 @@ export default function Navbar() {
   const [logOut, setLogOut] = useState(false);
 
   const handleLogOut = () => {
+    sessionStorage.clear()
     setLogOut(true);
   };
   useEffect(() => {
