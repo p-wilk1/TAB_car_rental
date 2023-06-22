@@ -5,6 +5,7 @@ import {useTable} from "react-table";
 import {useContext, useEffect, useState} from "react";
 import AuthContext from "../../context/AuthProvider.jsx";
 import api from "../../api/axiosConfig.js";
+import {count} from "react-table/src/aggregations.js";
 
 const RESERVATIONS_URL = "api/res"
 
@@ -15,15 +16,39 @@ const Reservations = () => {
     const headers = {
         Authorization: `Bearer ${auth.accessToken}`
     }
-    const getReservations = async ()=>{
-        try{
-            const response = await api.get(RESERVATIONS_URL,{headers})
-            const filteredData = response.data.filter(item => item.customer.firstName !=="Admin")
-            setReservations(filteredData);
-        }catch(err){
-            //console.log(err);
+    const getReservations = async () => {
+        try {
+            const response = await api.get(RESERVATIONS_URL, { headers });
+            const filteredData = response.data.filter(item => item.customer.firstName !== "Admin");
+
+            const reservationsWithCost = filteredData.map(reservation => {
+                const rentalCost = calculateRentalCost(reservation);
+                return { ...reservation, rentalCost };
+            });
+
+            setReservations(reservationsWithCost);
+        } catch (err) {
+            // Obsługa błędu
         }
+    };
+
+    function calculateRentalCost(data) {
+        const startDate = new Date(data.startDate);
+        const endDate = new Date(data.endDate);
+
+        const formattedStartDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+        const formattedEndDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+
+        const timeDiff = Math.abs(formattedEndDate - formattedStartDate);
+        const numDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        const rentalCost = numDays * parseInt(data.car.pricePerDay);
+        console.log(rentalCost)
+
+        return rentalCost;
     }
+
+    console.log(reservations)
+
     useEffect(()=>{
         getReservations()
     },[])
@@ -70,6 +95,10 @@ const Reservations = () => {
             Header:"Data zakonczenia",
             accessor: "endDate",
 
+        },
+        {
+            Header: "Kwota[pln]",
+            accessor: "rentalCost"
         },
 
     ],[]);
