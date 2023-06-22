@@ -25,9 +25,17 @@ const Users = () => {
             //console.log(err);
         }
     }
+
+    const handleDeleteUser = async (userId)=> {
+        setUsers(users => users.filter(user=> user.id !== userId));
+        await api.delete(`/api/customer/${userId}`, {headers})
+
+    }
+
     useEffect(()=>{
         getUsers()
     },[])
+
 
     console.log(users)
     const columns = React.useMemo(()=>[
@@ -108,7 +116,7 @@ const Users = () => {
                             {rows.map((row) => {
                                 prepareRow(row);
                                 //TUTAJ MOZNA DOSTAC ID SAMOCHODU
-                                //console.log(row.original.id)
+                                console.log(row.original.id)
                                 return (
                                     <tr {...row.getRowProps()}>
                                         {row.cells.map((cell,index) => (
@@ -120,7 +128,7 @@ const Users = () => {
                                         <ButtonMultipurpose>
                                             edit
                                         </ButtonMultipurpose>
-                                        <ButtonMultipurpose>
+                                        <ButtonMultipurpose onClick={()=>handleDeleteUser(row.original.id)}>
                                             delete
                                         </ButtonMultipurpose>
                                     </tr>
