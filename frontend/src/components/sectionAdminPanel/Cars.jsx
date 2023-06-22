@@ -3,11 +3,13 @@ import CarsStyle from "./Cars.module.css";
 import api from "../../api/axiosConfig.js";
 import ButtonMultipurpose from "../shared/ButtonMultipurpose.jsx";
 import {useTable} from "react-table";
+import {useContext} from "react";
+import AuthContext from "../../context/AuthProvider.jsx";
 
 const CARS_URL = "api/car/all"
 
 const Cars = () => {
-    let i = 0;
+    const{auth} = useContext(AuthContext)
 
     const [cars,setCars] = useState()
 
@@ -23,6 +25,15 @@ const Cars = () => {
         getCars()
     },[])
 
+    const headers = {
+        Authorization: `Bearer ${auth.accessToken}`
+    }
+
+    const handleDeleteCar = async (carId)=> {
+        setCars(cars => cars.filter(car=> car.id !== carId));
+        await api.delete(`/api/car/${carId}`, {headers})
+
+    }
 
     //console.log(cars)
 
@@ -115,7 +126,7 @@ const Cars = () => {
                                         <ButtonMultipurpose>
                                             edit
                                         </ButtonMultipurpose>
-                                        <ButtonMultipurpose>
+                                        <ButtonMultipurpose onClick={()=>handleDeleteCar(row.original.id)}>
                                             delete
                                         </ButtonMultipurpose>
                                     </tr>
