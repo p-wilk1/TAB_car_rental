@@ -43,7 +43,7 @@ const reducer = (state, action) => {
 };
 
 const ReservationsProvider = ({ children }) => {
-  const [{ reservations, isLoading, currentReservation, error, dispatch }] =
+  const [{ reservations, isLoading, currentReservation, error }, dispatch] =
     useReducer(reducer, initialState);
 
   useEffect(() => {

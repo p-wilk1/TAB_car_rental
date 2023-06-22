@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import api from "../api/axiosConfig";
 
 const CarsContext = createContext();
@@ -46,6 +52,7 @@ const CarsProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    console.log("rozpoczynam feczowanie!!!");
     const fetchCars = async () => {
       dispatch({ type: "loading" });
       try {
@@ -60,21 +67,25 @@ const CarsProvider = ({ children }) => {
         });
       }
     };
+    console.log("fetch cars!!!");
     fetchCars();
   }, []);
 
-  // const getCar = async (id) => {
-  //   if (Number(id) === currentCar.id) return;
-  //   dispatch({ type: "loading" });
-  //   try {
-  //     //brak endpointa do getowania pojedynczego samochodu
-  //   } catch {
-  //     dispatch({
-  //       type: "rejected",
-  //       payload: "There was an error loading cars",
-  //     });
-  //   }
-  // };
+  const getCar = useCallback(async function getCar(id) {
+    if (Number(id) === currentCar.id) return;
+    dispatch({ type: "loading" });
+    try {
+      const res = await api.get(`api/car/${id}`);
+      const data = res.data;
+      console.log(data);
+      dispatch({ type: "cars/loaded", payload: data });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "There was an error loading cars",
+      });
+    }
+  });
 
   const createCar = async (newCar) => {
     dispatch({ type: "loading" });
@@ -105,7 +116,15 @@ const CarsProvider = ({ children }) => {
 
   return (
     <CarsContext.Provider
-      value={{ cars, isLoading, currentCar, error, createCar, deleteCar }}
+      value={{
+        cars,
+        isLoading,
+        currentCar,
+        error,
+        createCar,
+        deleteCar,
+        getCar,
+      }}
     >
       {children}
     </CarsContext.Provider>

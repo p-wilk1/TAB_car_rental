@@ -42,7 +42,6 @@ const Home = () => {
     <>
       <Navbar auth={auth} />
       <ColumnContainerHeader />
-
       <SectionCars>
         <Header>Nasze samochody</Header>
         <CarList cars={cars} />

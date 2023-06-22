@@ -8,6 +8,7 @@ function reservationCard({ car }) {
   const { office, pricePerDay } = car;
   //   const { auth } = useAuth();
   const { auth } = useContext(AuthContext);
+  console.log(car);
 
   return (
     <div className={styles.reservationCard}>
@@ -17,9 +18,11 @@ function reservationCard({ car }) {
         {`${office.officeName}, email ${office.email}, nr telefonu ${office.phoneNumber}`}
       </h2>
       {auth.accessToken ? (
-        <ButtonMultipurpose>Rezerwacja</ButtonMultipurpose>
+        <ButtonMultipurpose to="/reservations">Rezerwacja</ButtonMultipurpose>
       ) : (
-        <ButtonMultipurpose>Zaloguj się, by zarezerwować</ButtonMultipurpose>
+        <ButtonMultipurpose to="/login">
+          Zaloguj się, by zarezerwować
+        </ButtonMultipurpose>
       )}
     </div>
   );

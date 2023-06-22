@@ -1,11 +1,12 @@
 import { useParams } from "react-router";
 import { useCars } from "../context/CarsContext";
-import { useEffect } from "react";
-import Spinner from "../components/shared/Spinner";
 import Navbar from "../components/sectionHeader/Navbar";
 import styles from "./Details.module.css";
 import ReservationCard from "../components/carDetails/ReservationCard";
 import Footer from "../components/sectionFooter/Footer";
+import api from "../api/axiosConfig";
+import { useEffect, useState } from "react";
+import { useScroll } from "framer-motion";
 
 const testImg = "https://www.topgear.com/sites/default/files/2022/07/6_0.jpg";
 
@@ -34,20 +35,28 @@ const testCar = {
 };
 
 function Details() {
-  const { cars, currentCar } = useCars();
+  const { cars } = useCars();
   const { id } = useParams();
-  console.log(currentCar);
-  const carDisplay = cars.filter((car) => car.id === Number(id));
-  //   useEffect(() => {
-  //     getCar(id);
-  //   }, [id, getCar]);
+  const carsDisplay = cars.filter((car) => car.id === Number(id));
+  const carDisplay = carsDisplay[0];
+  const { brand, carInfo, imagePath, model, registrationNumber } = carDisplay;
 
-  const { brand, carInfo, imagePath, model, registrationNumber } =
-    carDisplay[0];
+  console.log(imagePath[0].imagePath);
+  const [imageSrc, setImageSrc] = useState("");
+  useEffect(() => {
+    api
+      .get("api/files", {
+        params: {
+          filePath: imagePath[0].imagePath,
+        },
+      })
+      .then((response) => {
+        setImageSrc(response.data);
+      });
+  }, [imagePath]);
 
-  // console.log(carDisplay);
-  //   if (isLoading) return <Spinner />;
-
+  // console.log(test);
+  // console.log(base64String2);
   return (
     <>
       <div className={styles.detailsPage}>
@@ -55,10 +64,10 @@ function Details() {
         <div className={styles.carDetails}>
           <div className={styles.row1}>
             <div className={styles.column1of2}>
-              <img src={testImg} alt="boks" />
+              <img src={`data:image/jpeg;base64,${imageSrc}`} alt="boks" />
             </div>
             <div className={styles.column1of2}>
-              <ReservationCard car={testCar} />
+              <ReservationCard car={carDisplay} />
             </div>
           </div>
           <div className={styles.carHeader}>
