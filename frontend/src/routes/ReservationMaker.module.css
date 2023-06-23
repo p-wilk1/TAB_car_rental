@@ -1,0 +1,19 @@
+.reservationMakerMain {
+	margin: 8rem 20rem 10rem 20rem;
+	color: #f1efeb;
+	background-color: #5e729e;
+	padding: 2rem;
+	border: 1px solid transparent;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 2rem;
+}
+.form {
+	background-color: red;
+	border-radius: 7px;
+	background: #10264a;
+	padding: 2rem 3rem;
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}

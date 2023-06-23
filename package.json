@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "framer-motion": "^10.12.12"
+    "framer-motion": "^10.12.12",
+    "react-date-picker": "^10.2.0",
+    "react-datepicker": "^4.14.1"
   }
 }
