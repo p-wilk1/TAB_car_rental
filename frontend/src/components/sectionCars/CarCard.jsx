@@ -11,20 +11,20 @@ const CarCard = ({ car }) => {
 
 	console.log(car);
 	console.log(imagePath);
-	const [imageSrc, setImageSrc] = useState('');
-	useEffect(() => {
-		api.get('api/files', {
-			params: {
-				filePath: imagePath[0].imagePath,
-			},
-		}).then((response) => {
-			setImageSrc(response.data);
-		});
-	}, [imagePath]);
+	// const [imageSrc, setImageSrc] = useState('');
+	// useEffect(() => {
+	// 	api.get('api/files', {
+	// 		params: {
+	// 			filePath: imagePath[0].imagePath,
+	// 		},
+	// 	}).then((response) => {
+	// 		setImageSrc(response.data);
+	// 	});
+	// }, [imagePath]);
 
 	return (
 		<div className={styles.carCard}>
-			<img src={imageSrc} alt={'essa'}></img>
+			<img src={testImg} alt={'essa'}></img>
 
 			<h2>
 				{brand} {model}
