@@ -27,10 +27,10 @@ const AdminNavbar = () => {
                                 <i className="uil uil-chart"></i>
                                 <span className={AdminNav.linkName}>Samochody</span>
                             </Link></li>
-                            <li><a href="">
+                            <li><Link to={"/admin/reservations"} >
                                 <i className="uil uil-thumbs-up"></i>
                                 <span className={AdminNav.linkName}>Rezerwacje</span>
-                            </a></li>
+                            </Link></li>
                         </ul>
                     </div >
                 </div>

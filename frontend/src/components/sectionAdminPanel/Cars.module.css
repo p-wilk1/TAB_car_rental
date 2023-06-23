@@ -41,45 +41,7 @@ body{
 }
 
 
-.dashContent .activity .activityData{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.activity .activityData{
-    display: flex;
-
-}
-.activityData .data{
-    display: flex;
-    flex-direction: column;
-    margin: 0 15px;
-    text-align: center;
-}
-.activityData .dataTitle{
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--text-color);
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-.activityData .data .dataList{
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    white-space: nowrap;
-    color: var(--text-color);
-}
-
-.activityDataTitle{
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-
-}
-
-.activityData2{
+.dashContent .activity{
     display: flex;
     justify-content: space-between;
     align-items: center;
