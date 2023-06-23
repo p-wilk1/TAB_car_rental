@@ -31,9 +31,9 @@ namespace Car_Rential.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll([FromBody] SieveModel model)
+        public ActionResult GetAll()
         {
-            var result = _reservationService.GetAllReservations(model).Result;
+            var result = _reservationService.GetAllReservations();
             ;
             return Ok(result);
         }

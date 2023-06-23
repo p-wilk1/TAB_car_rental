@@ -13,7 +13,7 @@ namespace Car_Rential.Authorization
             Customer resource
         )
         {
-            if (requirement.Id == 1 || requirement.Id == resource.Id)
+            if (requirement.Role == "Admin" || requirement.Id == resource.Id)
             {
                 context.Succeed(requirement);
                 return Task.CompletedTask;

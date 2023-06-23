@@ -34,6 +34,13 @@ namespace Car_Rential.Services
             return result;
         }
 
+        public ReturnCarDto GetCarDto(int id)
+        {
+            var car = GetCarById(id, i => i.CarInfo, o => o.Office);
+            var result = _mapper.Map<ReturnCarDto>(car);
+            return result;
+        }
+
         public int AddCar(InputCarDto carDto, IFormFile file)
         {
             var car = _mapper.Map<Car>(carDto);
@@ -57,7 +64,7 @@ namespace Car_Rential.Services
 
             if (carDto.Type != null)
             {
-                car.Type = (CarTypes)carDto.Type;
+                car.Type = (string)carDto.Type;
             }
             if (carDto.Model != null)
             {

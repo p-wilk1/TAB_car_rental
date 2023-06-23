@@ -46,6 +46,22 @@ namespace Car_Rential.Services
         {
             var user = FindCustomer(customerId);
 
+            var whoIsAsking = (int)(_customerContextService.GetUserId);
+            var role = _customerContextService.GetUserRole;
+
+            var authorizationResult = _authorizationHandler
+                .AuthorizeAsync(
+                    _customerContextService.GetCustomer,
+                    user,
+                    new OwnAccountActionRequirement(role, whoIsAsking)
+                )
+                .Result;
+
+            if (!authorizationResult.Succeeded)
+            {
+                throw new AuthorizationFailException("You don't have access to this account");
+            }
+
             _dbContext.Remove(user);
             _dbContext.SaveChanges();
         }
@@ -55,9 +71,37 @@ namespace Car_Rential.Services
             var customers = _dbContext.Custormers
                 .Include(c => c.CustromerAddress)
                 .Include(c => c.Reservations)
+                .ThenInclude(c => c.Car)
                 .ToList();
 
             var result = _mapper.Map<List<ReturnCustomerDto>>(customers);
+
+            return result;
+        }
+
+        public ReturnCustomerDto GetCustomerDto(int customerId)
+        {
+            var customer = FindCustomer(customerId, a => a.CustromerAddress, r => r.Reservations);
+
+            var test = _customerContextService.GetCustomer;
+
+            var whoIsAsking = (int)(_customerContextService.GetUserId ?? 0);
+            var role = _customerContextService.GetUserRole;
+
+            var authorizationResult = _authorizationHandler
+                .AuthorizeAsync(
+                    _customerContextService.GetCustomer,
+                    customer,
+                    new OwnAccountActionRequirement(role, whoIsAsking)
+                )
+                .Result;
+
+            if (!authorizationResult.Succeeded)
+            {
+                throw new AuthorizationFailException("You don't have access to this account");
+            }
+
+            var result = _mapper.Map<ReturnCustomerDto>(customer);
 
             return result;
         }
@@ -86,6 +130,15 @@ namespace Car_Rential.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
+
+            if (user.Email == "admin@gmail.com")
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            }
+            else
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "User"));
+            }
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey)
@@ -125,12 +178,13 @@ namespace Car_Rential.Services
             var user = FindCustomer(customerId, c => c.CustromerAddress);
 
             var whoIsAsking = (int)(_customerContextService.GetUserId ?? 0);
+            var role = _customerContextService.GetUserRole ?? null;
 
             var authorizationResult = _authorizationHandler
                 .AuthorizeAsync(
                     _customerContextService.GetCustomer,
                     user,
-                    new OwnAccountActionRequirement(whoIsAsking)
+                    new OwnAccountActionRequirement(role, whoIsAsking)
                 )
                 .Result;
 

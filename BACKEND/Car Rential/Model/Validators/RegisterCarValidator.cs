@@ -19,8 +19,6 @@ namespace Car_Rential.Model.Validators
                 .GreaterThanOrEqualTo(1)
                 .WithMessage("Price can not be negative");
 
-            RuleFor(x => x.SeatsNumber).GreaterThan(0).LessThan(9).NotEmpty();
-
             RuleFor(x => x.SeatsNumber).GreaterThan(1).LessThan(6).NotEmpty();
 
             RuleFor(c => c.GearboxType)

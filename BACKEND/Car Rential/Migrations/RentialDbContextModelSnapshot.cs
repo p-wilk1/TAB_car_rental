@@ -45,8 +45,8 @@ namespace Car_Rential.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("pricePerDay")
                         .HasColumnType("float");
@@ -112,7 +112,6 @@ namespace Car_Rential.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HassedPassword")
@@ -153,7 +152,6 @@ namespace Car_Rential.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -294,9 +292,6 @@ namespace Car_Rential.Migrations
 
                     b.Property<string>("ReservatonNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RetunLocationId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("ReturnLocationId")
                         .HasColumnType("int");

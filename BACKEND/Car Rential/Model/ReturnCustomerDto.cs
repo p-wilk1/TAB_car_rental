@@ -12,6 +12,6 @@ namespace Car_Rential.Model
         public string Pesel { get; set; }
 
         public CustomerAdressDto customerAdress { get; set; }
-        public List<Reservation> reservationList { get; set; }
+        public List<ReservationToListDto> reservationList { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace Car_Rential.Interfaces
         public void UpdateCar(InputCarDto carDto, int carId);
         public void RelocateCar(int carId, int officeId);
         public Car GetCarById(int carId, params Expression<Func<Car, object>>[] expressions);
+        public ReturnCarDto GetCarDto(int id);
     }
 }

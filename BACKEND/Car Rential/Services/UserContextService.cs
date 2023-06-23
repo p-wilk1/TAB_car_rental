@@ -13,11 +13,18 @@ namespace Car_Rential.Services
         }
 
         public ClaimsPrincipal GetCustomer => _contextAccessor.HttpContext?.User;
+
         public int? GetUserId =>
-            GetCustomer == null
+            GetCustomer is null
                 ? null
-                : int.Parse(
-                    GetCustomer.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value
-                );
+                : (int?)
+                    int.Parse(
+                        GetCustomer.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value
+                    );
+
+        public string GetUserRole =>
+            GetCustomer is null
+                ? null
+                : GetCustomer.FindFirst(c => c.Type == ClaimTypes.Role).Value;
     }
 }

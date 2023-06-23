@@ -21,8 +21,6 @@ namespace Car_Rential.Entieties
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>().Property(c => c.FirstName).IsRequired();
-            modelBuilder.Entity<CustomerAddress>().Property(a => a.Country).IsRequired();
             modelBuilder
                 .Entity<Office>()
                 .HasMany(p => p.PickUpReservations)

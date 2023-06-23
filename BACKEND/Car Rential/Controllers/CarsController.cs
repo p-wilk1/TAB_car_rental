@@ -41,7 +41,7 @@ namespace Car_Rential.Controllers
         [AllowAnonymous]
         public ActionResult GetCarById([FromQuery] int carId)
         {
-            var result = _carsService.GetCarById(carId, i => i.CarInfo, o => o.Office);
+            var result = _carsService.GetCarDto(carId);
 
             return Ok(result);
         }

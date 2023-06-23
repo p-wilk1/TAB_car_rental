@@ -19,7 +19,7 @@ namespace Car_Rential.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetFile([FromQuery] string filePath)
+        public ActionResult<byte[]> GetFile([FromQuery] string filePath)
         {
             var doesExsist = Path.Exists(filePath);
 
@@ -32,7 +32,9 @@ namespace Car_Rential.Controllers
             contentProvider.TryGetContentType(filePath, out var contentType);
             var result = System.IO.File.ReadAllBytes(filePath);
 
-            return File(result, contentType, "test");
+            return result;
+
+            //return File(result, contentType, "test");
         }
 
         [HttpPost]
