@@ -16,6 +16,7 @@ import AdminUsers from './routes/AdminUsers.jsx';
 import AdminReservations from './routes/AdminReservations.jsx';
 import ReservationMaker from './routes/ReservationMaker.jsx';
 import { ReservationsProvider } from './context/ReservationContext.jsx';
+import EditUser from "./components/sectionAdminPanel/EditUser.jsx";
 
 function App() {
 	return (
@@ -55,6 +56,11 @@ function App() {
 							<Route
 								path="/admin/reservations"
 								element={<AdminReservations />}
+							/>
+							<Route
+								path="/admin/users/edit/:userId"
+								element={<EditUser/>}
+
 							/>
 						</Routes>
 					</ReservationsProvider>
