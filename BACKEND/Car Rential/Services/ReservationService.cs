@@ -70,9 +70,10 @@ namespace Car_Rential.Services
             _dbContext.SaveChanges();
         }
 
-        public async Task<PaginatedOutput<ReturnReservationDto>> GetAllReservations(
-            SieveModel model
-        )
+        // public async Task<PaginatedOutput<ReturnReservationDto>> GetAllReservations(
+        //     SieveModel model
+        // )
+        public IEnumerable<ReturnReservationDto> GetAllReservations()
         {
             var res = _dbContext.Reservations
                 .Include(r => r.Car)
@@ -80,24 +81,24 @@ namespace Car_Rential.Services
                 .Include(r => r.Customer.CustromerAddress)
                 .Include(r => r.PickupLocation)
                 .Include(r => r.ReturnLocation)
-                .AsQueryable();
+                .ToList();
 
-            var paginated = await _sieveProcessor.Apply(model, res).ToListAsync();
+            // var paginated = await _sieveProcessor.Apply(model, res).ToListAsync();
 
-            var mapped = _mapper.Map<List<ReturnReservationDto>>(paginated);
+            var mapped = _mapper.Map<List<ReturnReservationDto>>(res);
 
-            var totalItems = await _sieveProcessor
-                .Apply(model, res, applyPagination: false, applySorting: false)
-                .CountAsync();
+            //var totalItems = await _sieveProcessor
+            //    .Apply(model, res, applyPagination: false, applySorting: false)
+            //    .CountAsync();
 
-            var result = new PaginatedOutput<ReturnReservationDto>(
-                mapped,
-                totalItems,
-                model.Page.Value,
-                model.PageSize.Value
-            );
+            //var result = new PaginatedOutput<ReturnReservationDto>(
+            //    mapped,
+            //    totalItems,
+            //    model.Page.Value,
+            //    model.PageSize.Value
+            //);
 
-            return result;
+            return mapped;
         }
 
         private bool isCarBooked(int carId, DateTime start, DateTime end)
@@ -118,7 +119,7 @@ namespace Car_Rential.Services
             return true;
         }
 
-        private Reservation GetReservationById(
+        public Reservation GetReservationById(
             int reservationId,
             params Expression<Func<Reservation, object>>[] expressions
         )

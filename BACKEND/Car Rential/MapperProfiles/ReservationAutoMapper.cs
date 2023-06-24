@@ -19,7 +19,27 @@ namespace Car_Rential.MapperProfiles
                     dest => dest.ReturnLocation,
                     opt => opt.MapFrom(src => src.ReturnLocation)
                 )
-                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer));
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer))
+                .ForMember(
+                    dest => dest.StartDate,
+                    opt => opt.MapFrom(src => src.StartDate.ToString("g"))
+                )
+                .ForMember(
+                    dest => dest.EndDate,
+                    opt => opt.MapFrom(src => src.EndDate.ToString("g"))
+                );
+
+            CreateMap<Reservation, ReservationToListDto>()
+                .ForMember(c => c.Marka, d => d.MapFrom(x => x.Car.Brand))
+                .ForMember(c => c.Model, d => d.MapFrom(x => x.Car.Model))
+                .ForMember(
+                    dest => dest.StartDate,
+                    opt => opt.MapFrom(src => src.StartDate.ToString("g"))
+                )
+                .ForMember(
+                    dest => dest.EndDate,
+                    opt => opt.MapFrom(src => src.EndDate.ToString("g"))
+                );
         }
     }
 }

@@ -16,5 +16,6 @@ namespace Car_Rential.Interfaces
             int customerId,
             params Expression<Func<Customer, object>>[] expressions
         );
+        public ReturnCustomerDto GetCustomerDto(int customerId);
     }
 }

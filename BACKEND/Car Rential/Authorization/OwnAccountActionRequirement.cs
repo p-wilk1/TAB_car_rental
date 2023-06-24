@@ -4,10 +4,12 @@ namespace Car_Rential.Authorization
 {
     public class OwnAccountActionRequirement : IAuthorizationRequirement
     {
+        public string Role { get; }
         public int Id { get; }
 
-        public OwnAccountActionRequirement(int id)
+        public OwnAccountActionRequirement(string role, int id)
         {
+            Role = role;
             Id = id;
         }
     }

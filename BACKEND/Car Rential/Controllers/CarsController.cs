@@ -37,6 +37,15 @@ namespace Car_Rential.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetCarById([FromQuery] int carId)
+        {
+            var result = _carsService.GetCarDto(carId);
+
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public ActionResult AddCar([FromForm] string stringCarDto, [FromForm] IFormFile file)
         {

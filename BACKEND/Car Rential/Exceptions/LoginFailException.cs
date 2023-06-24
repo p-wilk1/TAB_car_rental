@@ -2,7 +2,7 @@
 {
     public class LoginFailException : BaseException
     {
-        public override int statusCode { get; } = 404;
+        public override int statusCode { get; } = 401;
 
         public LoginFailException(string message)
             : base(message) { }

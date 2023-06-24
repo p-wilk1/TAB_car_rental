@@ -3,6 +3,7 @@ using Car_Rential.Model;
 using Car_Rential.Model.Validators;
 using Car_Rential.Services;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace Car_Rential.Controllers
 {
     [Route("api/customer")]
     [ApiController]
+    [Authorize]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomersService _customersService;
@@ -36,17 +38,33 @@ namespace Car_Rential.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        public ActionResult GetUser([FromQuery] int userId)
+        {
+            var result = _customersService.GetCustomerDto(userId);
+
+            return Ok(result);
+        }
+
         [HttpPost("register")]
+        [AllowAnonymous]
         public ActionResult RegisterCustomer([FromBody] InputCustomerDto customerDto)
         {
-            _RegisterValidator.ValidateAndThrow(customerDto);
+            var validationResult = _RegisterValidator.Validate(customerDto);
 
+            if (!validationResult.IsValid)
+            {
+                string[] errors = validationResult.FormatValidationErrors();
+
+                return BadRequest(errors);
+            }
             var result = _customersService.RegisterCustomer(customerDto);
 
             return Created($"/api/register/{result}", null);
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public ActionResult LoginCustomer([FromBody] LoginCustomerDto customerDto)
         {
             var result = _customersService.LoginCustomer(customerDto);
@@ -68,7 +86,15 @@ namespace Car_Rential.Controllers
             [FromRoute] int customerId
         )
         {
-            _UpdateValidator.ValidateAndThrow(customerDto);
+            customerDto.Identyfire = customerId;
+            var validationResult = _UpdateValidator.Validate(customerDto);
+
+            if (!validationResult.IsValid)
+            {
+                string[] errors = validationResult.FormatValidationErrors();
+
+                return BadRequest(errors);
+            }
 
             _customersService.UpdateCustomer(customerDto, customerId);
 

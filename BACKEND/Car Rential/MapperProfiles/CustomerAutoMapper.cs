@@ -47,9 +47,10 @@ namespace Car_Rential.MapperProfiles
                     c => c.customerAdress.ZipCode,
                     x => x.MapFrom(y => y.CustromerAddress.ZipCode)
                 )
-                .ForPath(
-                    c => c.customerAdress.State,
-                    x => x.MapFrom(y => y.CustromerAddress.State)
+                .ForPath(c => c.customerAdress.State, x => x.MapFrom(y => y.CustromerAddress.State))
+                .ForMember(
+                    dest => dest.reservationList,
+                    opt => opt.MapFrom(src => src.Reservations)
                 );
         }
     }

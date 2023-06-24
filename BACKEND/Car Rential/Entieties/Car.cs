@@ -3,7 +3,7 @@
     public class Car
     {
         public int Id { get; set; }
-        public CarTypes Type { get; set; }
+        public string Type { get; set; }
         public string Model { get; set; }
         public string Brand { get; set; }
         public string RegistrationNumber { get; set; }
@@ -15,16 +15,5 @@
 
         public int? OfficeId { get; set; }
         public virtual Office Office { get; set; }
-    }
-
-    public enum CarTypes
-    {
-        Sedan,
-        Kombi,
-        Hatchback,
-        Liftback,
-        Coupe,
-        SUV,
-        Pickup
     }
 }

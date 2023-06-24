@@ -45,8 +45,8 @@ namespace Car_Rential.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("pricePerDay")
                         .HasColumnType("float");
@@ -112,7 +112,6 @@ namespace Car_Rential.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HassedPassword")
@@ -153,7 +152,6 @@ namespace Car_Rential.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -336,7 +334,7 @@ namespace Car_Rential.Migrations
             modelBuilder.Entity("Car_Rential.Entieties.Customer", b =>
                 {
                     b.HasOne("Car_Rential.Entieties.CustomerAddress", "CustromerAddress")
-                        .WithOne("Customer")
+                        .WithOne("Custormer")
                         .HasForeignKey("Car_Rential.Entieties.Customer", "CustromerAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -417,7 +415,7 @@ namespace Car_Rential.Migrations
 
             modelBuilder.Entity("Car_Rential.Entieties.CustomerAddress", b =>
                 {
-                    b.Navigation("Customer");
+                    b.Navigation("Custormer");
                 });
 
             modelBuilder.Entity("Car_Rential.Entieties.Office", b =>

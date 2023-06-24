@@ -71,7 +71,9 @@ namespace Car_Rential.Model.Validators
                     "Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character [@$!%*?&], and be at least 8 characters long."
                 );
 
-            RuleFor(c => c.ConfirmPassword).Equal(p => p.Password);
+            RuleFor(c => c.ConfirmPassword)
+                .Equal(p => p.Password)
+                .WithMessage("ConfirmPassword must be equal to Password");
 
             RuleFor(a => a.Country).NotEmpty().MaximumLength(255);
             RuleFor(a => a.City).NotEmpty().MaximumLength(255);
