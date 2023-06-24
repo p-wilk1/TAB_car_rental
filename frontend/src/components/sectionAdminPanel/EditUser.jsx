@@ -105,8 +105,8 @@ const EditUser = () => {
     }, [email, zipcode, securityNumber, phone]);
     const headers = {
         Authorization: `Bearer ${auth.accessToken}`
-    }
 
+    }
 
 
     const getUser = async ()=>{
@@ -123,13 +123,10 @@ const EditUser = () => {
             setCity(response.data.customerAdress.city)
             setStreet(response.data.customerAdress.streetName)
             setBuildNumber(response.data.customerAdress.buildingNumber)
-            setZipcode(response.data.customerAdress.zipCode)
+            setZipcode( response.data.customerAdress.zipCode)
             setState(response.data.customerAdress.state)
-            setPasswd(response.data.password)
-            setMatchPasswd(response.data.confirmPassword)
             setLoading(true)
-            console.log(passwd)
-            console.log(matchPasswd)
+
         }
         catch (err){
             console.log(err)
@@ -147,27 +144,40 @@ const EditUser = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(name,lastName,phone,email,securityNumber,country,city,street,buildNumber,zipcode,state)
         try {
+
             const response = await api.patch(`/api/customer/${match[1]}`,
 
-                JSON.stringify({
+                JSON.stringify(
+                    {
                     firstName: name,
                     lastName: lastName,
                     phoneNumber: phone,
                     email: email,
-                    password:passwd ,
-                    confirmPassword: matchPasswd,
-                    pesel: securityNumber,
+                    //pesel: securityNumber,
                     country: country,
                     city: city,
                     streetName: street,
                     buildingNumber: buildNumber,
                     zipCode: zipcode,
-                    state: state,
-                }),{headers}
+                    state: state
+                }
+                ),
+                {
+                    headers:
+                        {
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'Authorization': `Bearer ${auth.accessToken}`
+                        },
+
+
+
+                }
 
 
             );
+
 
 
             navigate('/admin/users');
@@ -183,7 +193,11 @@ const EditUser = () => {
                     errorMessage += err.response.data[pop] + '<br/>';
                 }
                 setErrMsg(errorMessage);
-            }else{
+                console.log(err)
+                console.log(response)
+            }
+
+            else{
                 console.log(err)
             }
         }
