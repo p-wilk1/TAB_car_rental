@@ -125,7 +125,7 @@ const Users = () => {
                                         {
 
                                         }
-                                        <ButtonMultipurpose>
+                                        <ButtonMultipurpose to={`/admin/users/edit/${row.original.id}`}>
                                             edit
                                         </ButtonMultipurpose>
                                         <ButtonMultipurpose onClick={()=>handleDeleteUser(row.original.id)}>
