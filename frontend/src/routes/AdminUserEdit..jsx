@@ -10,6 +10,7 @@ const AdminUserEdit = () => {
     return (
         <>
             <Navbar auth={auth}/>
+            <AdminNavbar/>
             <EditUser/>
 
         </>

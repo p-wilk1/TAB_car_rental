@@ -135,9 +135,6 @@ const Reservations = () => {
         <>
             <section className={ReservationStyle.dashboard}>
                 <div className={ReservationStyle.dashContent}>
-                    <div className="overview">
-                    </div>
-
                     <div className={ReservationStyle.activity}>
                         <div className={ReservationStyle.title}>
                             <i className="uil uil-clock-three"></i>
