@@ -22,7 +22,7 @@ function ReservationCard({ car }) {
 					Rezerwacja
 				</ButtonMultipurpose>
 			) : (
-				<ButtonMultipurpose to={`/reservation/${car[0].id}`}>
+				<ButtonMultipurpose to={`/login`}>
 					Zaloguj się, by zarezerwować
 				</ButtonMultipurpose>
 			)}

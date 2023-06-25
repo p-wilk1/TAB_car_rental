@@ -12,6 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ButtonMultipurpose from '../components/shared/ButtonMultipurpose';
 import AuthContext from '../context/AuthProvider';
 import jwtDecode from 'jwt-decode';
+import Modal from '../components/shared/Modal';
 
 const optionsOffice = [
 	{ name: 'Office A', id: 1 },
@@ -28,14 +29,17 @@ function ReservationMaker() {
 	const carId = useParams();
 	const { cars } = useCars();
 	const { auth, setAuth } = useContext(AuthContext);
+
 	const carsDisplay = cars.filter((car) => car.id === Number(carId.carId));
 	const carDisplay = carsDisplay[0];
-	const { brand, model, registrationNumber, pricePerDay } = carDisplay;
 
+	const { brand, model, registrationNumber, pricePerDay } = carDisplay;
 	const [pickupLocation, setPickupLocation] = useState(0);
 	const [returnLocation, setReturnLocation] = useState();
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
+
+	const [showModal, setShowModal] = useState(true);
 
 	let claim;
 
@@ -73,7 +77,12 @@ function ReservationMaker() {
 		} catch (err) {
 			console.log(err);
 		}
+		setShowModal(true);
 		// await createReservation(newReservation);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
 	};
 
 	return (
@@ -151,6 +160,7 @@ function ReservationMaker() {
 				<ButtonMultipurpose onClick={handleSubmit}>
 					Rezerwuj
 				</ButtonMultipurpose>
+				{showModal && <Modal onClose={handleCloseModal} />}
 			</div>
 			<Footer />
 		</>

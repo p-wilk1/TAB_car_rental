@@ -1,0 +1,9 @@
+.generalInfoContainer {
+	padding: 2rem 2rem 0 2rem;
+	margin-bottom: 2rem;
+
+	border-bottom: 1px solid #f1efeb;
+}
+.generalInfoContainer h1 {
+	color: #f1efeb;
+}

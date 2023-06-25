@@ -1,0 +1,8 @@
+.userPanelMain {
+	margin: 10rem;
+	background-color: #5e729e;
+	border: 1px solid transparent;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 2rem;
+	padding: 5rem;
+}

@@ -1,0 +1,13 @@
+.userReservationsContainer {
+	overflow: auto;
+}
+.userReservationsContainer ul {
+	list-style: none;
+	padding: 1rem;
+}
+.userReservationsContainer ul li {
+	display: inline-block;
+	background-color: #f1efeb;
+	margin: 1rem;
+	padding: 1rem;
+}
