@@ -5,6 +5,7 @@ import ButtonMultipurpose from "../shared/ButtonMultipurpose.jsx";
 import {useTable} from "react-table";
 import {useContext} from "react";
 import AuthContext from "../../context/AuthProvider.jsx";
+import {Link} from "react-router-dom";
 
 const CARS_URL = "api/car/all"
 
@@ -89,9 +90,11 @@ const Cars = () => {
                         </div>
                         <div>
                             //TODO ten button tez popraw
-                            <ButtonMultipurpose>
-                                dodaj auto
-                            </ButtonMultipurpose>
+
+                                <ButtonMultipurpose to={"/admin/cars/add"}>
+                                    dodaj auto
+                                </ButtonMultipurpose>
+
                         </div>
                     </div>
                     {
