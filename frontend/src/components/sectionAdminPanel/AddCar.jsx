@@ -3,16 +3,10 @@ import {useNavigate} from "react-router";
 import {useContext, useEffect, useRef, useState} from "react";
 import AuthContext from "../../context/AuthProvider.jsx";
 import api from "../../api/axiosConfig.js";
-import Navbar from "../sectionHeader/Navbar.jsx";
 import styles from "../../routes/RegisterStyle.module.css";
 import {Link} from "react-router-dom";
-import Footer from "../sectionFooter/Footer.jsx";
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const PASSWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-const PHONE_REGEX = /^[1-9]\d{8}$/;
-const PESEL_REGEX = /^\d{11}$/;
-const ZIPCODE_REGEX = /^\d{5}$/;
+
 
 
 const AddCar = () => {
@@ -20,7 +14,6 @@ const AddCar = () => {
     const{auth} = useContext(AuthContext)
     //EMAIL
     const typeRef = useRef();
-
 
     //type
     const [type, setType] = useState('');
@@ -101,7 +94,11 @@ const AddCar = () => {
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
+        console.log(file)
+        const filePath =file.name
+        console.log(filePath)
         setImagePathFocus(file);
+        setImagePath(filePath)
     };
 
     useEffect(() => {
@@ -109,6 +106,7 @@ const AddCar = () => {
     }, [model, type, brand, registrationNumber,price,imagePath,seatsNumber,doorsNumber,gearboxType,office]);
 
     const headers = {
+        'Content-Type': 'application/json; charset=utf-8',
         Authorization: `Bearer ${auth.accessToken}`
 
     }
@@ -117,10 +115,12 @@ const AddCar = () => {
 
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
+
+            try {
 
             const response = await api.post("/api/car/add",
 
@@ -138,11 +138,12 @@ const AddCar = () => {
                         color: color,
                         description: description,
                         productionYear: productionYear,
-                        mileage: model,
+                        mileage: mileage,
                         fuelType: fuelType,
-                        office: office,
                     }
                 ),
+
+
                 {
                     headers:
                         {
@@ -156,7 +157,19 @@ const AddCar = () => {
 
 
             );
-
+            // let officeId =1;
+            // if(office ==="Office A"){
+            //     officeId = 1;
+            // }else if(office ==="Office B"){
+            //     officeId = 2;
+            // }else
+            //     officeId = 3
+            //
+            //
+            //
+            //     const reponse2 = await api.patch(`/api/car/relocation?carId=&officeId=${officeId}`,
+            //
+            //     )
 
 
             navigate('/admin/cars');
@@ -183,9 +196,8 @@ const AddCar = () => {
         }
     };
 
-    console.log(gearboxType)
+    //console.log(gearboxType)
     console.log(imagePath)
-
     return (
         <>
 
@@ -205,6 +217,7 @@ const AddCar = () => {
                                        // aria-invalid={validEmail ? 'false' : 'true'}
                                         aria-describedby="uidnote"
                                         required
+                                        onChange={(e) => setType(e.target.value)}
                                         onFocus={() => setTypeFocus(true)}
                                         onBlur={() => setTypeFocus(false)}
 
@@ -218,6 +231,7 @@ const AddCar = () => {
                                         id={model}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setModel(e.target.value)}
                                         onFocus={() => setModelFocus(true)}
                                         onBlur={() => setModelFocus(false)}
                                     />
@@ -232,6 +246,7 @@ const AddCar = () => {
                                         id={brand}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setBrand(e.target.value)}
                                         onFocus={() => setBrandFocus(true)}
                                         onBlur={() => setBrandFocus(false)}
                                     />
@@ -244,6 +259,7 @@ const AddCar = () => {
                                         id={registrationNumber}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setRegistrationNumber(e.target.value)}
                                         onFocus={() => setRegistrationNumberFocus(true)}
                                         onBlur={() => setRegistrationNumberFocus(false)}
                                     />
@@ -258,6 +274,7 @@ const AddCar = () => {
                                         id={price}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setPricePerDay(e.target.value)}
                                         onFocus={() => setPriceFocus(true)}
                                         onBlur={() => setPriceFocus(false)}
                                     />
@@ -273,7 +290,6 @@ const AddCar = () => {
                                         onChange={handleImageUpload}
 
                                      alt="dodaj zdjecie samochodu"/>
-                                    {/*{imagePath && <img src={URL.createObjectURL(imagePath)} alt={}/> }*/}
                                 </div>
                             </div>
                             <div className={styles.row}>
@@ -318,6 +334,7 @@ const AddCar = () => {
                                         id={color}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setColor(e.target.value)}
                                         onFocus={() => setColorFocus(true)}
                                         onBlur={() => setColorFocus(false)}
                                     />
@@ -332,8 +349,9 @@ const AddCar = () => {
                                         id={description}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setDescription(e.target.value)}
                                         onFocus={() => setDescriptionFocus(true)}
-                                        onBlur={() => setDescription(false)}
+                                        onBlur={() => setDescriptionFocus(false)}
                                     />
                                 </div>
                                 <div className={styles.column1of2}>
@@ -344,6 +362,7 @@ const AddCar = () => {
                                         id={productionYear}
                                         autoComplete="off"
                                         required
+                                        onChange={(e) => setProductionYear(e.target.value)}
                                         onFocus={() => setProductionFocus(true)}
                                         onBlur={() => setProductionFocus(false)}
                                     />
@@ -351,13 +370,14 @@ const AddCar = () => {
                             </div>
                             <div className={styles.row}>
                             <div className={styles.column1of2}>
-                                <label htmlFor="mileage">Przebieg:</label>
+                                <label htmlFor="mileage">Przebieg[tys.km]:</label>
                                 <br />
                                 <input
                                     type="text"
                                     id={mileage}
                                     autoComplete="off"
                                     required
+                                    onChange={(e) => setMileage(e.target.value)}
                                     onFocus={() => setMileageFocus(true)}
                                     onBlur={() => setMileageFocus(false)}
                                 />
