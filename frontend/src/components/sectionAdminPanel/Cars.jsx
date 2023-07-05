@@ -126,7 +126,7 @@ const Cars = () => {
                                         {
 
                                         }
-                                        <ButtonMultipurpose>
+                                        <ButtonMultipurpose to={`/admin/cars/edit/${row.original.id}`}>
                                             edit
                                         </ButtonMultipurpose>
                                         <ButtonMultipurpose onClick={()=>handleDeleteCar(row.original.id)}>
