@@ -107,7 +107,8 @@ const AddCar = () => {
 
     const headers = {
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: `Bearer ${auth.accessToken}`
+        'Authorization': `Bearer ${auth.accessToken}`,
+        'location': ''
 
     }
 
@@ -145,32 +146,28 @@ const AddCar = () => {
 
 
                 {
-                    headers:
-                        {
-                            'Content-Type': 'application/json; charset=utf-8',
-                            'Authorization': `Bearer ${auth.accessToken}`
-                        },
-
-
+                    headers: headers
 
                 }
 
 
             );
-            // let officeId =1;
-            // if(office ==="Office A"){
-            //     officeId = 1;
-            // }else if(office ==="Office B"){
-            //     officeId = 2;
-            // }else
-            //     officeId = 3
-            //
-            //
-            //
-            //     const reponse2 = await api.patch(`/api/car/relocation?carId=&officeId=${officeId}`,
-            //
-            //     )
 
+            let officeId =1;
+            if(office ==="Office A"){
+                officeId = 1;
+            }else if(office ==="Office B"){
+                officeId = 2;
+            }else{
+                officeId = 3
+            }
+
+            const carId = response.headers.location.split("/").pop();
+
+            const reponse2 = await api.patch(`/api/car/relocation?carId=${carId}&officeId=${officeId}`,{},{
+                    headers:headers
+                    }
+                )
 
             navigate('/admin/cars');
         }
