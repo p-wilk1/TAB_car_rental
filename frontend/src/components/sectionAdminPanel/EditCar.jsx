@@ -153,24 +153,26 @@ const EditCar = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(name,lastName,phone,email,securityNumber,country,city,street,buildNumber,zipcode,state)
         try {
 
             const response = await api.patch(`/api/car/${match[1]}`,
 
                 JSON.stringify(
                     {
-                        firstName: name,
-                        lastName: lastName,
-                        phoneNumber: phone,
-                        email: email,
-                        //pesel: securityNumber,
-                        country: country,
-                        city: city,
-                        streetName: street,
-                        buildingNumber: buildNumber,
-                        zipCode: zipcode,
-                        state: state
+                        type: type,
+                        model: model,
+                        brand: brand,
+                        registrationNumber: registrationNumber,
+                        pricePerDay: price,
+                        imagePath: car.imagePath,
+                        seatsNumber: seatsNumber,
+                        doorsNumber: doorsNumber,
+                        gearboxType: gearboxType,
+                        color: color,
+                        description: description,
+                        productionYear: productionYear,
+                        mileage: mileage,
+                        fuelType: fuelType,
                     }
                 ),
                 {
@@ -185,8 +187,22 @@ const EditCar = () => {
                 }
 
 
+
             );
-            navigate('/admin/users');
+            let officeId =1;
+            if(office ==="Office A"){
+                officeId = 1;
+            }else if(office ==="Office B"){
+                officeId = 2;
+            }else{
+                officeId = 3
+            }
+
+            const reponse2 = await api.patch(`/api/car/relocation?carId=${match[1]}&officeId=${officeId}`,{},{
+                    headers:headers
+                }
+            )
+            navigate('/admin/cars');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
