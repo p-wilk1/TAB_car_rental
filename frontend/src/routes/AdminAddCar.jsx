@@ -1,20 +1,20 @@
 import React from 'react';
-import Navbar from "../components/sectionHeader/Navbar";
 import {useContext} from "react";
 import AuthContext from "../context/AuthProvider.jsx";
+import Navbar from "../components/sectionHeader/Navbar.jsx";
 import AdminNavbar from "../components/sectionAdminPanel/AdminNavbar.jsx";
-import EditUser from "../components/sectionAdminPanel/EditUser.jsx";
+import AddCar from "../components/sectionAdminPanel/AddCar.jsx";
 
-const AdminUserEdit = () => {
+const AdminAddCar = () => {
     const{auth} = useContext(AuthContext)
     return (
         <>
             <Navbar auth={auth}/>
             <AdminNavbar/>
-            <EditUser/>
+            <AddCar/>
 
         </>
     );
 };
 
-export default AdminUserEdit;
+export default AdminAddCar;

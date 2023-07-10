@@ -3,7 +3,7 @@ import {useNavigate} from "react-router";
 import {useEffect, useRef, useState} from "react";
 import api from "../../api/axiosConfig.js";
 import Navbar from "../sectionHeader/Navbar.jsx";
-import styles from "../../routes/RegisterStyle.module.css";
+import styles from "./EditUser.module.css";
 import {Link} from "react-router-dom";
 import Footer from "../sectionFooter/Footer.jsx";
 import {useContext} from "react";
@@ -423,21 +423,7 @@ const EditUser = () => {
                                 </div>
                             </div>
                             <div className={styles.signUpButton}>
-                                <button
-                                    // disabled={
-                                    //     !validEmail ||
-                                    //     !validPhone ||
-                                    //     !validSecurityNumber ||
-                                    //     !validZipcode ||
-                                    //     !name.length > 0 ||
-                                    //     !lastName.length > 0 ||
-                                    //     !country.length > 0 ||
-                                    //     !city.length > 0 ||
-                                    //     !street.length > 0 ||
-                                    //     !buildNumber.length > 0 ||
-                                    //     !state.length > 0
-                                    // }
-                                >
+                                <button>
                                     Sign Up
                                 </button>
                             </div>

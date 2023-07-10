@@ -17,6 +17,9 @@ import AdminReservations from './routes/AdminReservations.jsx';
 import ReservationMaker from './routes/ReservationMaker.jsx';
 import { ReservationsProvider } from './context/ReservationContext.jsx';
 import EditUser from "./components/sectionAdminPanel/EditUser.jsx";
+import AdminUserEdit from "./routes/AdminUserEdit..jsx";
+import AdminAddCar from "./routes/AdminAddCar.jsx";
+import AdminEditCar from "./routes/AdminEditCar.jsx";
 
 function App() {
 	return (
@@ -59,8 +62,17 @@ function App() {
 							/>
 							<Route
 								path="/admin/users/edit/:userId"
-								element={<EditUser/>}
+								element={<AdminUserEdit/>}
 
+
+							/>
+							<Route
+								path="/admin/cars/add"
+								element={<AdminAddCar/>}
+							/>
+							<Route
+								path="/admin/cars/edit/:carId"
+								element={<AdminEditCar/>}
 							/>
 						</Routes>
 					</ReservationsProvider>
