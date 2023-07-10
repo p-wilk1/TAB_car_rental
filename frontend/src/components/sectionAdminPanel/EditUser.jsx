@@ -3,7 +3,7 @@ import {useNavigate} from "react-router";
 import {useEffect, useRef, useState} from "react";
 import api from "../../api/axiosConfig.js";
 import Navbar from "../sectionHeader/Navbar.jsx";
-import styles from "../../routes/RegisterStyle.module.css";
+import styles from "./EditUser.module.css";
 import {Link} from "react-router-dom";
 import Footer from "../sectionFooter/Footer.jsx";
 import {useContext} from "react";

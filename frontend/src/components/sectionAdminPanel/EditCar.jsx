@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../routes/RegisterStyle.module.css";
+import styles from "./EditCar.module.css"
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {useContext, useEffect, useRef, useState} from "react";
@@ -233,7 +233,7 @@ const EditCar = () => {
 
             <div className={styles.registerPage}>
                 <p>{errMsg}</p>
-                <h1>Dodawanie nowego samochodu</h1>
+                <h1>Edytowanie samochodu</h1>
                 {loading ?(
                     <form onSubmit={handleSubmit} >
                         <div className={styles.row}>
