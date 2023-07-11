@@ -17,7 +17,7 @@ const Cars = () => {
     const getCars = async ()=>{
         try{
             const response = await api.get(CARS_URL)
-            setCars(response.data);
+            setCars(response.data.reverse());
         }catch(err){
             console.log(err);
         }
