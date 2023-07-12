@@ -4,7 +4,7 @@
   flex-wrap: wrap;
 }
 .carAttributes div {
-  flex-basis: 50%;
+  flex-basis: 45%;
   padding: 0.5rem;
 }
 
