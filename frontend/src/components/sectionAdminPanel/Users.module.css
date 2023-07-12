@@ -52,7 +52,7 @@ body {
 .mainActivity table {
   border: 2px solid #10264a;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   border-spacing: 3rem;
 }
 .mainActivity thead {
