@@ -1,26 +1,39 @@
-# Car Rental Web API
+# Car Rental Web 
 
-# Creators
-## Frontend
+
+# Frontend
 Bartosz - https://github.com/dbartoszp
 <br/>
 Konrad - https://github.com/rixis321
-## Backend
+# Backend
 Dominik - https://github.com/dominik-matysek
 <br/>
 Kamil - https://github.com/Kil85
 <br/>
 Piotr - https://github.com/p-wilk1
 
+# Used Technologies:
+- React
+<br/>
+- .NET
+<br/>
+- MySQL
+<br/>
 # Description
 Car rental service system that allows:
 Customer:
 a) register with the rental company and edit his/her data
+<br/>
 b) browsing the list of available cars and making rental reservations
+<br/>
 c) browse through the history of his/her rentals and generate reports
+<br/>
 The rental company:
+<br/>
 a) car fleet management (adding, updating and deleting cars)
+<br/>
 b) customer management 
+<br/>
 c) accounting for rentals and generating invoices for customers
 <br/>
 <br/>
