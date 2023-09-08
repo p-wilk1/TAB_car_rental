@@ -16,8 +16,8 @@ Piotr - https://github.com/p-wilk1
 - React
 - .NET
 - MySQL
+  
 # Description
-<br/>
 Car rental service system that allows:
 <br/>
 Customer:
