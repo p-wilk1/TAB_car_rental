@@ -1,11 +1,11 @@
 # Car Rental Web API
 
 # Creators
-# Frontend
+## Frontend
 Bartosz - https://github.com/dbartoszp
 <br/>
 Konrad - https://github.com/rixis321
-# Backend
+## Backend
 Dominik - https://github.com/dominik-matysek
 <br/>
 Kamil - https://github.com/Kil85
