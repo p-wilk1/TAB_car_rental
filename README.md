@@ -21,7 +21,9 @@ Piotr - https://github.com/p-wilk1
 <br/>
 # Description
 Car rental service system that allows:
+<br/>
 Customer:
+<br/>
 a) register with the rental company and edit his/her data
 <br/>
 b) browsing the list of available cars and making rental reservations
