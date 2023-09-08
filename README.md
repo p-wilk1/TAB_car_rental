@@ -22,7 +22,6 @@ Car rental service system that allows:
 <br/>
 Customer:
 <br/>
-<br/>
 a) register with the rental company and edit his/her data
 <br/>
 b) browsing the list of available cars and making rental reservations
@@ -30,7 +29,6 @@ b) browsing the list of available cars and making rental reservations
 c) browse through the history of his/her rentals and generate reports
 <br/>
 The rental company:
-<br/>
 <br/>
 a) car fleet management (adding, updating and deleting cars)
 <br/>
