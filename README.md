@@ -14,9 +14,7 @@ Piotr - https://github.com/p-wilk1
 
 # Used Technologies:
 - React
-<br/>
 - .NET
-<br/>
 - MySQL
 <br/>
 # Description
